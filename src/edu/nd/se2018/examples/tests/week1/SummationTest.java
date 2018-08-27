@@ -10,6 +10,8 @@ public class SummationTest {
 		SumNumbers sumNumbers = new SumNumbers();
 		assert(sumNumbers.sumNumberRange(3, 5)==12);
 		assert(sumNumbers.sumNumberRange(1,4)==10);
+		assert(sumNumbers.sumNumberRange(5,5)==5);
+		assert(sumNumbers.sumNumberRange(6,3)==0);
 	}
-
 }
+
