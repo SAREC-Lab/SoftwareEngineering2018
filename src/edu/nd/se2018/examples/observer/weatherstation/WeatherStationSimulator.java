@@ -3,7 +3,7 @@ package edu.nd.se2018.examples.observer.weatherstation;
 public class WeatherStationSimulator {
 	
 	public static void main(String[] args){
-		WeatherStation weatherStation = new WeatherStation();			
+		WeatherStation weatherStation = new WeatherStation(); 			
 		
 		// Now let's add observers.
 		new WeatherView1(weatherStation);
@@ -11,6 +11,6 @@ public class WeatherStationSimulator {
 		
 		weatherStation.setTemperature(70);
 		weatherStation.setOutlook(Outlook.SUNNY);
-		weatherStation.displayWeather();		
+		weatherStation.displayWeather(); 		
 	}
 }
