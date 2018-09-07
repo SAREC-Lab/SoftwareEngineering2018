@@ -1,33 +1,46 @@
 package edu.nd.se2018.homework.hwk2;
+import java.text.DecimalFormat;
+
 import edu.nd.se2018.homework.hwk2.RaceStrategy;
 
 public class Horse {
+	private static DecimalFormat df2 = new DecimalFormat(".##");
+	
 	RaceStrategy raceStrategy;
-	public static String name;
-	public static int number;
-	public static double position;
-	public static double maxSpeed;
+	public String name;
+	public int number;
+	public double position;
+	public double maxSpeed;
 	
 	public Horse(RaceStrategy strategy, String n, int num, double p, double s) {
-		raceStrategy = strategy;
-		name = n;
-		number = num;
-		position = p;
-		maxSpeed = s;
+		this.raceStrategy = strategy;
+		this.name = n;
+		this.number = num;
+		this.position = p;
+		this.maxSpeed = s;
 	}
 	
 	public void run() {
-		double p = raceStrategy.runStrategy(position, maxSpeed);
-		position = p;
+		double p = raceStrategy.runStrategy(this.position, this.maxSpeed);
+		this.position = p;
 	}
 	
 	public void setStrategy(RaceStrategy strategy) {
-		raceStrategy = strategy;
+		this.raceStrategy = strategy;
 		
 	}
 	
+	public boolean done() {
+		if (position >= 10) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
 	public void display() {
-		System.out.println(name + " is at position: " + position);
+		System.out.println(name + " is at position: " + df2.format(position));
 	}
 
 }
