@@ -5,14 +5,11 @@ public class EarlySprinter implements strategy {
 	public int moveForward(int pos, int maxSpeed) {
 		int delta = 0;
 		if(pos < 200) {
-			delta = maxSpeed;
-			
+			delta = maxSpeed;	
 		} else {
 			delta = (int) ((int) maxSpeed * 0.75);
-
 		}
-
-		System.out.println(pos + " " + delta +" ES ");
+		//System.out.println(pos + " " + delta +" ES ");
 		return delta;
 	}
 

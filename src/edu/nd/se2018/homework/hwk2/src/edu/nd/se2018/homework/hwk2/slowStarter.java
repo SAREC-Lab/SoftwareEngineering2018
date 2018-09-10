@@ -16,7 +16,7 @@ public class slowStarter implements strategy {
 			nextSpot = maxSpeed + pos;
 		}
 		nextSpot = pos + delta;
-		System.out.println(pos + " " + delta + "SS");
+		//System.out.println(pos + " " + delta + "SS");
 		return delta;
 	}
 

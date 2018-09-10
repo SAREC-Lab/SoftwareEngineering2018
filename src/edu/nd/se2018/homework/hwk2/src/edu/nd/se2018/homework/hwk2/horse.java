@@ -15,19 +15,19 @@ public class horse {
 	public void setStrategy(String str1) {  //switch statement to change strategy
 		switch(str1) {
 		case "slowStarter":
-			System.out.println("1");
+		//	System.out.println("1");
 			strat = new slowStarter();
 			break;
 		case "EarlySprinter":
-			System.out.println("2");
+		//	System.out.println("2");
 			strat = new EarlySprinter();
 			break;
 		case "steadyRunner":
-			System.out.println("3");
+		//	System.out.println("3");
 			strat = new steadyRunner();
 			break;
 		default:
-			System.out.println("4");
+		//	System.out.println("4");
 			strat = new steadyRunner();
 			break;
 		}
@@ -40,8 +40,8 @@ public class horse {
 	}
 	public int run() {
 		int jump = this.strat.moveForward(this.distanceTravelled, topSpeed);
-		System.out.println(jump + "this the the jump up");
-		distanceTravelled += jump;
+		//System.out.println(jump + "this the the jump up");
+		distanceTravelled += jump; // iterate the pos of the horse based on the strat implentation
 		return distanceTravelled;
 	}
 	
