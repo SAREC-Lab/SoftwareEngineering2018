@@ -6,5 +6,5 @@ package edu.nd.se2018.homework.hwk2;
  *
  */
 public interface HorseBehavior {
-	public int performRace(); 
+	public void performRace(Horse horse); 
 }

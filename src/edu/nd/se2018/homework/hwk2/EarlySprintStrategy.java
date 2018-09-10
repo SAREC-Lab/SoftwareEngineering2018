@@ -3,13 +3,14 @@ package edu.nd.se2018.homework.hwk2;
 public class EarlySprintStrategy implements HorseBehavior {
 
 	@Override
-	public int performRace() {
-		// TODO Auto-generated method stub
-		int distance = 0;
-		for(int miles = 0; miles < 10; miles++) {
-			
+	public void performRace(Horse horse) {
+		horse.mins++;
+		if (horse.currMiles > 2) { 
+			horse.currMiles = (horse.initSpeed * 0.75 / 60) * horse.mins;
+
+		} else {
+			horse.currMiles = (horse.initSpeed / 60) * horse.mins;
 		}
-		return distance;
 	}
 
 }
