@@ -20,8 +20,11 @@ public class Race {
 		distances.put(horse.name, 0.0);
 	}
 	
-	public void announceLeader(Horse horse) {
-		System.out.println("In the lead: " + horse.name);
+	public void announceLeader(Horse leadingHorse) {
+		for (Horse horse: horses) {
+			System.out.println(horse.name + " has run " + distances.get(horse.name)+ " miles" );
+		}
+		System.out.println("In the lead: " + leadingHorse.name + "\n");
 	}
 	
 	public void announceWinner(Horse horse) {
