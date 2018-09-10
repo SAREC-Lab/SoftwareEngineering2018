@@ -1,4 +1,4 @@
-package edu.nd.se2018.homework.hwk1;
+package src.edu.nd.se2018.homework.hwk1;
 import org.junit.Test;
 
 public class Question3Test {
