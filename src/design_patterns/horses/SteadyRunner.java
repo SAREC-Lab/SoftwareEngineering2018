@@ -9,7 +9,6 @@ public class SteadyRunner extends Horse{
 		speed = s*.8;
 	}
 
-	
 	@Override
 	public void run() {
 		if (position < 10) {

@@ -30,7 +30,6 @@ public class EarlySprinter extends Horse{
 			System.out.println(name + " has run " + position + " miles.");
 		}else {
 			System.out.println(name + " has finished.");
-		}
-		
+		}	
 	}
 }

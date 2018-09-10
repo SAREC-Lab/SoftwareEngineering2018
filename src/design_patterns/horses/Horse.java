@@ -11,7 +11,6 @@ public class Horse {
 		
 	public Horse(){
 	}
-
 	
 	public void run(){
 	}

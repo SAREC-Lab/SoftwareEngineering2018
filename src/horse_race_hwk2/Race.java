@@ -13,7 +13,6 @@ public class Race {
 		}else {
 			arr[horseNum] = new EarlySprinter(n, s);
 		}
-		
 		horseNum++;
 	}
 	

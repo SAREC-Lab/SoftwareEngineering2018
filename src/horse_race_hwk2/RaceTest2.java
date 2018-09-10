@@ -1,6 +1,5 @@
 package horse_race_hwk2;
 import org.junit.Test;
-
 import design_patterns.horses.EarlySprinter;
 import design_patterns.horses.Horse;
 import design_patterns.horses.SlowStarter;
