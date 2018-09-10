@@ -7,16 +7,42 @@ public class horse {
 	private strategy strat;
 	
 	
-	public horse(String Name, int speed, strategy str) {
+	public horse(String Name, int speed, String str) {
 		this.name = Name;
 		this.topSpeed = speed;
-		this.strat = str;
+		setStrategy(str);
+	}
+	public void setStrategy(String str1) {  //switch statement to change strategy
+		switch(str1) {
+		case "slowStarter":
+			System.out.println("1");
+			strat = new slowStarter();
+			break;
+		case "EarlySprinter":
+			System.out.println("2");
+			strat = new EarlySprinter();
+			break;
+		case "steadyRunner":
+			System.out.println("3");
+			strat = new steadyRunner();
+			break;
+		default:
+			System.out.println("4");
+			strat = new steadyRunner();
+			break;
+		}
 	}
 	public String getName() {
 		return this.name;
 	}
-	public int run(int pos) {
-		return this.strat.moveForward(this.distanceTravelled, topSpeed);
+	public int getD() {
+		return this.distanceTravelled;
+	}
+	public int run() {
+		int jump = this.strat.moveForward(this.distanceTravelled, topSpeed);
+		System.out.println(jump + "this the the jump up");
+		distanceTravelled += jump;
+		return distanceTravelled;
 	}
 	
 }
