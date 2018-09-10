@@ -16,5 +16,5 @@ public class Horse {
 	public double position = 0;
 	public boolean finished = false;
 	public double intspeed;
-	public double reducedSpeed = 0;
+	public double slowSpeed = 0;
 }
