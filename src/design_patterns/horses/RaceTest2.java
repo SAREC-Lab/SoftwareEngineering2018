@@ -1,9 +1,5 @@
-package horse_race_hwk2;
+package design_patterns.horses;
 import org.junit.Test;
-import design_patterns.horses.EarlySprinter;
-import design_patterns.horses.Horse;
-import design_patterns.horses.SlowStarter;
-import design_patterns.horses.SteadyRunner;
 
 public class RaceTest2 {
 	@Test

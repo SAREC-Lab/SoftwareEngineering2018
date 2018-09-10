@@ -1,6 +1,4 @@
-package headfirst_design_patterns.ducks;
-
-import horse_race_hwk2.Race;
+package design_patterns.horses;
 
 public class Main {
 

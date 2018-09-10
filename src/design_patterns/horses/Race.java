@@ -1,11 +1,11 @@
-package horse_race_hwk2;
-import design_patterns.horses.*;
+package design_patterns.horses;
 
 public class Race {
 	public Horse[] arr = new Horse[5];
 	public int horseNum = 0;
 	
 	public void enrollHorse(String n, double s, String t) {
+		
 		if(t == "steady") {
 			arr[horseNum] = new SteadyRunner(n, s);
 		}else if (t == "slow") {
@@ -14,6 +14,7 @@ public class Race {
 			arr[horseNum] = new EarlySprinter(n, s);
 		}
 		horseNum++;
+		
 	}
 	
 	public Race(){

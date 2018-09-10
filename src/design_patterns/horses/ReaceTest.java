@@ -1,7 +1,6 @@
-package horse_race_hwk2;
-import org.junit.Test;
+package design_patterns.horses;
 
-import design_patterns.horses.Race;
+import org.junit.Test;
 
 public class ReaceTest {
 	@Test
