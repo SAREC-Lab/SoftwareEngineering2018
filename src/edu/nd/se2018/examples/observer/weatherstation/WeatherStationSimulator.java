@@ -11,6 +11,6 @@ public class WeatherStationSimulator {
 		
 		weatherStation.setTemperature(70);
 		weatherStation.setOutlook(Outlook.SUNNY);
-		weatherStation.displayWeather(); 		
+		//weatherStation.displayWeather(); 		
 	}
 }
