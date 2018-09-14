@@ -13,6 +13,7 @@ public class OceanMap {
 	public int[][] oceanGrid = new int[25][25];
 	final int dimensions = 25;
 	public Ship ship = new Ship(oceanGrid);
+	public PirateShip pirateShip = new PirateShip(oceanGrid);
 	
 	
 	public void setIslands( ) {
@@ -20,7 +21,7 @@ public class OceanMap {
 		for (int i = 0; i < 10; i++) {
 			int xIsland = random.ints(0, 10).findFirst().getAsInt();
 			int yIsland =  random.ints(0, 10).findFirst().getAsInt();
-			while ((xIsland == 0) && (yIsland == 0)) {
+			while ((xIsland == 0) && (yIsland == 0) || (xIsland == 5) && (yIsland == 7)) {
 				xIsland = random.ints(0, 10).findFirst().getAsInt();
 				yIsland =  random.ints(0, 10).findFirst().getAsInt();
 			}
@@ -47,6 +48,13 @@ public class OceanMap {
 	public int[] getShipLocation() {
 		int[] location = new int[2];
 		location = ship.getLocation();
+		return(location);
+	}
+	
+	public int[] getPirateLocation() {
+		int[] location = new int[2];
+		location = pirateShip.getLocation();
+		oceanGrid[location[0]][location[1]] = 2;
 		return(location);
 	}
 }

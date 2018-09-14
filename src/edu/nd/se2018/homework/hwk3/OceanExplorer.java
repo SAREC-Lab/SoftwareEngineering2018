@@ -13,9 +13,10 @@ public class OceanExplorer extends Application {
 	AnchorPane root;
 	Scene scene;
 	OceanMap oceanMap;
-	ImageView shipImageView;
-	Image shipImage;
+	ImageView shipImageView, pirateImageView;
+	Image shipImage, pirateImage;
 	Ship shipObject;
+	PirateShip pirateShip;
 	
 
 	@Override
@@ -33,6 +34,12 @@ public class OceanExplorer extends Application {
 		shipImageView.setX(oceanMap.getShipLocation()[0]*50);
 		shipImageView.setY(oceanMap.getShipLocation()[1]*50);
 		root.getChildren().add(shipImageView);
+		
+		pirateImage = new Image("/images/pirateship.gif", 50, 50, true, true);
+		pirateImageView = new ImageView(pirateImage);
+		pirateImageView.setX(oceanMap.getPirateLocation()[0]*50);
+		pirateImageView.setY(oceanMap.getPirateLocation()[1]*50);
+		root.getChildren().add(pirateImageView);
 		
 		//shipObject = new Ship();
 		shipObject = oceanMap.ship;
