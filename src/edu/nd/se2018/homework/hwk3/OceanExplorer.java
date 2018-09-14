@@ -24,7 +24,7 @@ public class OceanExplorer extends Application {
 		Scene scene = new Scene(root, 500, 500);
 		oceanMap = new OceanMap();
 		
-		
+		oceanMap.setIslands();
 		oceanMap.drawMap(root.getChildren(), 50);
 		
 		// Load Images
@@ -34,7 +34,7 @@ public class OceanExplorer extends Application {
 		shipImageView.setY(oceanMap.getShipLocation()[1]*50);
 		root.getChildren().add(shipImageView);
 		
-		shipObject = new Ship();
+		//shipObject = new Ship();
 		shipObject = oceanMap.ship;
 		
 		oceanStage.setScene(scene);

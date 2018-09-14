@@ -3,8 +3,12 @@ package edu.nd.se2018.homework.hwk3;
 public class Ship {
 	public int x = 0;
 	public int y = 0;
+	int[][] oceanMap;
 	
-	public class OceanMap {}
+	public Ship(int[][] map) {
+		oceanMap = map;
+		
+	}
 	
 	public int[] getLocation() {
 		int[] location = new int[2];
@@ -14,27 +18,39 @@ public class Ship {
 	}
 	
 	public void goEast() {
-		if (getLocation()[0] <= 8) {
-			x += 1;
+		int[] l = getLocation();
+		if (l[0] <= 8) {
+			if (oceanMap[l[0] + 1][l[1]] == 0) {
+				x += 1;
+			}
 		}
 		
 	}
 	
 	public void goWest() {
-		if (getLocation()[0] >= 1) {
-			x -= 1;
+		int[] l = getLocation();
+		if (l[0] >= 1) {
+			if (oceanMap[l[0] - 1][l[1]] == 0) {
+				x -= 1;
+			}
 		}
 	}
 	
 	public void goSouth() {
-		if (getLocation()[1] <= 8) {
-			y += 1;
+		int[] l = getLocation();
+		if (l[1] <= 8) {
+			if (oceanMap[l[0]][l[1] + 1] == 0) {
+				y += 1;
+			}
 		}
 	}
 	
 	public void goNorth() {
-		if (getLocation()[1] >= 1) {
-			y -= 1;
+		int[] l = getLocation();
+		if (l[1] >= 1) {
+			if (oceanMap[l[0]][l[1] - 1] == 0) {
+				y -= 1;
+			}
 		}
 	}
 
