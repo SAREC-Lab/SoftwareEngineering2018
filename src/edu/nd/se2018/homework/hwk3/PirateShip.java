@@ -1,9 +1,13 @@
 package edu.nd.se2018.homework.hwk3;
 
-public class PirateShip {
+import java.util.Observable;
+import java.util.Observer;
+
+public class PirateShip implements Observer {
 	public int x = 5;
 	public int y = 7;
 	int[][] oceanMap;
+	int[] shipPosition = new int[2];
 
 	public PirateShip(int[][] map) {
 		oceanMap = map;
@@ -52,5 +56,29 @@ public class PirateShip {
 				y -= 1;
 			}
 		}
+	}
+	
+	public void movePirate() {
+		if (x - shipPosition[0] <= 0) {
+			this.goEast();
+		}
+		else {
+			this.goWest();
+		}
+		if (shipPosition[1] - y < 0) {
+			this.goNorth();
+		}
+		else {
+			this.goSouth();
+		}
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		if (o instanceof Ship) {
+			shipPosition = ((Ship) o).getLocation();
+			this.movePirate();
+		}
+		
 	}
 }

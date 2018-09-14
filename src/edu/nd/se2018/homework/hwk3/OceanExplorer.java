@@ -41,12 +41,14 @@ public class OceanExplorer extends Application {
 		pirateImageView.setY(oceanMap.getPirateLocation()[1]*50);
 		root.getChildren().add(pirateImageView);
 		
-		//shipObject = new Ship();
 		shipObject = oceanMap.ship;
+		pirateShip = oceanMap.pirateShip;
 		
 		oceanStage.setScene(scene);
 		oceanStage.setTitle("Ocean");
 		oceanStage.show();
+		
+		shipObject.addObserver(pirateShip);
 		
 		startSailing(scene);
 	}
@@ -75,6 +77,9 @@ public class OceanExplorer extends Application {
 				
 				shipImageView.setX(shipObject.getLocation()[0]*50);
 				shipImageView.setY(shipObject.getLocation()[1]*50);
+				
+				pirateImageView.setX(pirateShip.getLocation()[0]*50);
+				pirateImageView.setY(pirateShip.getLocation()[1]*50);
 				
 			}
 			

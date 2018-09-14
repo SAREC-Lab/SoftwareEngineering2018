@@ -1,6 +1,8 @@
 package edu.nd.se2018.homework.hwk3;
 
-public class Ship {
+import java.util.Observable;
+
+public class Ship extends Observable {
 	public int x = 0;
 	public int y = 0;
 	int[][] oceanMap;
@@ -24,7 +26,8 @@ public class Ship {
 				x += 1;
 			}
 		}
-		
+		setChanged();
+		notifyObservers(); 
 	}
 	
 	public void goWest() {
@@ -34,6 +37,8 @@ public class Ship {
 				x -= 1;
 			}
 		}
+		setChanged();
+		notifyObservers(); 
 	}
 	
 	public void goSouth() {
@@ -43,6 +48,8 @@ public class Ship {
 				y += 1;
 			}
 		}
+		setChanged();
+		notifyObservers(); 
 	}
 	
 	public void goNorth() {
@@ -52,6 +59,8 @@ public class Ship {
 				y -= 1;
 			}
 		}
+		setChanged();
+		notifyObservers(); 
 	}
 
 }
