@@ -12,5 +12,30 @@ public class Ship {
 		location[1] = y;
 		return(location);
 	}
+	
+	public void goEast() {
+		if (getLocation()[0] <= 8) {
+			x += 1;
+		}
+		
+	}
+	
+	public void goWest() {
+		if (getLocation()[0] >= 1) {
+			x -= 1;
+		}
+	}
+	
+	public void goSouth() {
+		if (getLocation()[1] <= 8) {
+			y += 1;
+		}
+	}
+	
+	public void goNorth() {
+		if (getLocation()[1] >= 1) {
+			y -= 1;
+		}
+	}
 
 }

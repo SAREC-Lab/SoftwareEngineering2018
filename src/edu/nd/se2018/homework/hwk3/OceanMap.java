@@ -9,7 +9,7 @@ import edu.nd.se2018.homework.hwk3.Ship;
 public class OceanMap {
 	public int[][] oceanGrid = new int[25][25];
 	final int dimensions = 25;
-	Ship ship = new Ship();
+	public Ship ship = new Ship();
 	
 	public void drawMap(ObservableList<Node> root, int scale) {
 		for (int x = 0; x < dimensions; x++) {
