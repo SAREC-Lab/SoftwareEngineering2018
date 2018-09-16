@@ -59,17 +59,25 @@ public class PirateShip implements Observer {
 	}
 	
 	public void movePirate() {
-		if (x - shipPosition[0] <= 0) {
-			this.goEast();
+		int xdist = x - shipPosition[0];
+		int ydist = y - shipPosition[1];
+		
+		if (Math.abs(xdist) > Math.abs(ydist)) {
+			if (xdist <= 0) {
+				this.goEast();
+			}
+			else {
+				this.goWest();
+			}
 		}
 		else {
-			this.goWest();
-		}
-		if (shipPosition[1] - y < 0) {
-			this.goNorth();
-		}
-		else {
-			this.goSouth();
+			if(ydist > 0) {
+				this.goNorth();
+			}
+			else {
+				this.goSouth();
+			}
+			
 		}
 	}
 
