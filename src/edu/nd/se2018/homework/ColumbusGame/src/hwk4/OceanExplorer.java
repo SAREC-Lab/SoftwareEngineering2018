@@ -1,7 +1,9 @@
 package hwk4;
 
+// Cameron Pickard
+
 import java.awt.Point;
-import java.util.ArrayList;
+
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.application.Application;
@@ -10,11 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Line;
-import javafx.scene.shape.Rectangle;
+
 import javafx.stage.Stage;
 import java.util.Random;
 import javafx.scene.layout.AnchorPane;
@@ -28,7 +26,6 @@ public class OceanExplorer extends Application {
 	ImageView shipImageView, pirate1ImageView, pirate2ImageView;
 	Image shipImage, pirate1Image, pirate2Image;
 	OceanMap map = new OceanMap();
-    Circle target;
     //Pane root;
     Point targetPoint;
     Ship columbusShip;
@@ -47,12 +44,13 @@ public class OceanExplorer extends Application {
 		root = new AnchorPane();
 
 		ObservableList<Node> myList = root.getChildren();
-		map.drawMap(myList, cellSize);
+		map.drawMap(myList, cellSize); // all blue squares
 		//columbusShip = new Ship(x, y, cellSize, map);
-		map.drawIslands(myList, cellSize, x, y);
+		map.drawIslands(myList, cellSize, x, y); // add 10 green squares
 		columbusShip = new Ship(x, y, cellSize, map);
 
 		int madeIsland = 0;
+		// randomly place pirate 1
 		while(madeIsland == 0) {
 			p1x = rx.nextInt(25);
 			p1y = ry.nextInt(25);
@@ -61,7 +59,9 @@ public class OceanExplorer extends Application {
 				madeIsland = 1;
 			}
 		}
+		//randomly place pirate 2
 		madeIsland = 0;
+
 		while(madeIsland == 0) {
 			p2x = rx.nextInt(25);
 			p2y = ry.nextInt(25);
@@ -84,6 +84,7 @@ public class OceanExplorer extends Application {
 	private void loadImages(){
 
 
+		// Load Pirate 1's ship
 
 		pirate1Image = new Image("hwk4\\images\\pirateship.gif",cellSize, cellSize, false, true);
 		pirate1ImageView = new ImageView(pirate1Image);
@@ -92,27 +93,21 @@ public class OceanExplorer extends Application {
 
 		root.getChildren().add(pirate1ImageView);
 
+		// Load Pirate 2's ship
 		pirate2Image = new Image("hwk4\\images\\pirateship.gif",cellSize, cellSize, false, true);
 		pirate2ImageView = new ImageView(pirate2Image);
 		pirate2ImageView.setX(pirate2.getLocation().x*cellSize);
 		pirate2ImageView.setY(pirate2.getLocation().y*cellSize);
 
-		// Load "found" target image
-		//foundImage = new Image("hwk4\\images\\ColumbusShip.png",cellSize, cellSize, false, true);
-		//foundImageView = new ImageView(foundImage);
-		//foundImageView.setX(columbusShip.getLocation().x*cellSize);
-		//foundImageView.setY(columbusShip.getLocation().y*cellSize);
-		// set current target image to "not found yet" image
 		root.getChildren().add(pirate2ImageView);
 
+		// Load Columbus' ship
 		shipImage = new Image("hwk4\\images\\ColumbusShip.png",cellSize, cellSize, false, true);
 		shipImageView = new ImageView(shipImage);
 		shipImageView.setX(columbusShip.getLocation().x*cellSize);
 		shipImageView.setY(columbusShip.getLocation().y*cellSize);
 
-		// Load "found" target image
 
-		// set current target image to "not found yet" image
 		root.getChildren().add(shipImageView);
 
     }
@@ -137,6 +132,7 @@ public class OceanExplorer extends Application {
 				default:
 					break;
 			}
+			// Update images
 			shipImageView.setX(columbusShip.getLocation().x*cellSize);
 			shipImageView.setY(columbusShip.getLocation().y*cellSize);
 
@@ -146,6 +142,7 @@ public class OceanExplorer extends Application {
 			pirate2ImageView.setX(pirate2.getLocation().x*cellSize);
 			pirate2ImageView.setY(pirate2.getLocation().y*cellSize);
 
+			// Check to see if pirates caught Columbus
 			if(columbusShip.getLocation().x == pirate1.getLocation().x && columbusShip.getLocation().y == pirate1.getLocation().y) {
 				try {
 		            Thread.sleep(1500);
