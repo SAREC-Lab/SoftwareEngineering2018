@@ -1,19 +1,20 @@
 package hwk4;
 
+// Cameron Pickard
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-//import java.awt.Point;
-//import java.util.ArrayList;
+
 import java.util.Random;
 
-import javafx.scene.shape.Line;
+
 
 public class OceanMap {
-	int[][] oceanGrid = new int[25][25];
+	int[][] oceanGrid = new int[25][25]; // 0 empty, 1 island
 	final int dimensions = 25;
 
+	// Create the sea
 	public void drawMap(ObservableList<Node> root, int scale) {
 		for(int x = 0; x < dimensions; x++){
 			for(int y = 0; y < dimensions; y++) {
@@ -25,6 +26,7 @@ public class OceanMap {
 			}
 		}
 	}
+	// Add 10 islands randomly
 	public void drawIslands(ObservableList<Node> root, int scale, int x, int y) {
 		Random rx = new Random();
 		Random ry = new Random();
@@ -48,6 +50,7 @@ public class OceanMap {
 		}
 	}
 
+	// Return status of space
 	public int seeSpace(int x, int y) {
 		return oceanGrid[x][y];
 	}
