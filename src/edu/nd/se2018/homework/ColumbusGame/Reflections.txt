@@ -1,0 +1,15 @@
+The design of my game is effective. In OceanExplorer, everything important instance of a class is instantiated.
+The OceanMap, columbusShip, pirate1 and pirate2 are all instantiated here. Additionally, oceanMap.drawIslands is called here in order to 
+create the islands. These are randomly placed in spots that do not contain columbusShip or other islands. Then pirateShips are randomly placed
+in areas with no islands or ships. The scene/stage is then set up. The various images are loaded in properly. What allows the images to
+move is the startSailing function (also a method of OceanExplorer). Key events are handled, and the player is able to move Columbus in 
+any of the 4 cardinal directions. He will only move to spots that are in-bounds and have no islands. Once Columbus moves, pirate1 and
+pirate2, Observers of columbusShip, the Subject/Observable, will try to move a space closer, if possible. Once all moves have been made,
+the images are reloaded in at a different location (to simulate the feeling of movement). The game ends when a pirate ship catches 
+columbusShip. After a 1.5 second delay, the window closes, indicating that the game is over.
+
+Stetch goal #1: The Reset Button
+If I implemented a Reset button, I would simply draw a new map with newly instantiated ships, as if I had just restarted the program.
+
+Stretch goal #2: Images for islands
+I could simply iterate through the OceanMap, and load in an island image whenever "1" showed up in my 25x25 ocean map. (1 indicates island).
