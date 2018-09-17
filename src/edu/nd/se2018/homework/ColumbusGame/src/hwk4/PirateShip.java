@@ -1,5 +1,7 @@
 package hwk4;
 
+// Cameron Pickard
+
 import java.awt.Point;
 
 import java.util.Observer;
@@ -8,7 +10,6 @@ import java.util.Observable;
 import javafx.scene.shape.Circle;
 
 public class PirateShip implements Observer {
-	Circle circle;
 	int xCell;
 	int yCell;
 	int unitSize;  // Scaling factor
@@ -20,13 +21,10 @@ public class PirateShip implements Observer {
 		xCell = x;
 		yCell = y;
 		this.unitSize = unitSize;
-		//circle = new Circle(unitSize/2);
-		//circle.setCenterX(x*unitSize+unitSize/2);
-		//circle.setCenterY(y*unitSize+unitSize/2);
-		//circle = new Circle(x*unitSize+unitSize/2, y*unitSize+unitSize/2, unitSize/2);
 		this.oceanMap = map; // We need a reference to it so we can access the grids!
 	}
 
+	// Function runs when Ship notifies observers
 	public void update(Observable observable, Object arg) {
 		columbusShip = (Ship) observable;
 		int cx = columbusShip.getLocation().x;
@@ -83,6 +81,7 @@ public class PirateShip implements Observer {
 		return position;
 	}
 
+	// Movement functions
 	public boolean goEast() {
 		if(this.xCell < 24 && oceanMap.seeSpace(this.xCell + 1, this.yCell) != 1 ) {
 			this.xCell++;
@@ -112,3 +111,4 @@ public class PirateShip implements Observer {
 		return false;
 	}
 }
+
