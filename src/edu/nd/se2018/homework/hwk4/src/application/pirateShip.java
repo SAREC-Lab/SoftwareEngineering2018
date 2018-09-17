@@ -19,7 +19,7 @@ public class pirateShip implements Observer {
 	Image pImage;
 	public ImageView pShip;
 	
-	public pirateShip(int [][] oceanGrid){
+	public pirateShip(int [][] oceanGrid){ // built constructor so that I can build out the list of pirates in main.
 		restricted = oceanGrid;
 		pirateX = rand.nextInt(24) * scale;
 		pImage = new Image("file:/Users/connorgreen/git/SoftwareEngineering2018/src/edu/nd/se2018/homework/hwk4/src/application/pirateship.gif", 25, 25, true, true);	
@@ -48,7 +48,6 @@ public class pirateShip implements Observer {
 				pirateX = pirateX-24;
 	
 			}
-			System.out.println(pirateX + "go left but didnt");
 		}
 		if (pirateY - sailorY < 0) {
 			if(resCheck(pirateX,pirateY+24)) {
@@ -63,21 +62,21 @@ public class pirateShip implements Observer {
 		pShip.setX(pirateX);
 		pShip.setY(pirateY);
 	}
-	public boolean resCheck(int x, int y) {
+	public boolean resCheck(int x, int y) { // check if the ship is going to be pushed into restrictive space
 		if(restricted[y/24][x/24] == 1 || restricted[y/24][x/24] == 2 || (( x<0 || x > 600 )|| (y < 0 || y > 600))) {
 			return false;
 		}else {
-			System.out.println("Good Move");
+			//System.out.println("Good Move");
 		return true;
 		}
 	}
 	
 	public void defineRes(int [][] res) {
-		restricted = res;
+		restricted = res; // grab a copy of the map for the pirate ship to reference
 	}
 	@Override
 	public void update(Observable s, Object arg) {
-		if (s instanceof Ship){
+		if (s instanceof Ship){ //update status of the observed class
 			sailorX = ((Ship)s).getX();
 			sailorY = ((Ship)s).getY();
 			hunt();			

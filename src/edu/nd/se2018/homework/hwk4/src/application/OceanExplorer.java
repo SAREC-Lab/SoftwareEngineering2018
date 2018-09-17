@@ -24,7 +24,7 @@ public class OceanExplorer extends Application {
 	Pane pane = new Pane();
 	Scene ocean = new Scene(pane,600,600);
 	
-	LinkedList<pirateShip> pirates = new LinkedList<pirateShip>();
+	LinkedList<pirateShip> pirates = new LinkedList<pirateShip>(); // container for pirate ships
 	// standard ship
 	Image _ship = new Image("file:/Users/connorgreen/git/SoftwareEngineering2018/src/edu/nd/se2018/homework/hwk4/src/application/ColumbusShip.png", 25, 25, true, true);
 	ImageView shipImage = new ImageView(_ship);

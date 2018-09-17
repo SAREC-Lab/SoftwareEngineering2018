@@ -37,14 +37,14 @@ public class Ship extends Observable{
 		}
 	}
 	public void goSouth(int [][] oceanGrid) {
-		if(yLocal + 24 < 600 && goodMove(xLocal,yLocal+24,oceanGrid)) {
+		if(yLocal + 24 < 600 && goodMove(xLocal,yLocal+24,oceanGrid)) { // bound check + logic
 			yLocal = yLocal + 24;
-			setChanged();
+			setChanged(); // update the pirate class
 			notifyObservers();
 		}
 	}
 	public boolean goodMove(int x, int y, int[][] oceanGrid) {
-		if (oceanGrid[y/24][x/24] == 0) {
+		if (oceanGrid[y/24][x/24] == 0) { // check oceanGrid to see if the move is vallid
 			return true;
 		}else {
 			return false;
