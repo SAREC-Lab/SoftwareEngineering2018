@@ -29,7 +29,7 @@ public class OceanExplorer extends Application {
 		oceanMap.drawMap(root.getChildren(), 50);
 		
 		// Load Images
-		shipImage = new Image("/images/ColumbusShip.png", 50, 50, true, true);
+		shipImage = new Image("/images/Train.PNG", 50, 50, true, true);
 		shipImageView = new ImageView(shipImage);
 		shipImageView.setX(oceanMap.getShipLocation()[0]*50);
 		shipImageView.setY(oceanMap.getShipLocation()[1]*50);
