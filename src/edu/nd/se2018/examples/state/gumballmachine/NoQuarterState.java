@@ -1,5 +1,6 @@
 package edu.nd.se2018.examples.state.gumballmachine;
 
+
 public class NoQuarterState implements State {
     GumballMachine gumballMachine;
  
@@ -24,8 +25,7 @@ public class NoQuarterState implements State {
 		System.out.println("You need to pay first");
 	} 
 	
-	public void refill() { }
- 
+	public void refill() { } 
 	public String toString() {
 		return "waiting for quarter";
 	}
