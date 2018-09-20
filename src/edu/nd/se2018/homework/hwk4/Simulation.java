@@ -3,6 +3,7 @@ package edu.nd.se2018.homework.hwk4;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import edu.nd.se2018.homework.hwk4.model.infrastructure.Direction;
 import edu.nd.se2018.homework.hwk4.model.infrastructure.MapBuilder;
 import edu.nd.se2018.homework.hwk4.model.infrastructure.RailwayTracks;
 import edu.nd.se2018.homework.hwk4.model.infrastructure.Road;
@@ -42,12 +43,12 @@ public class Simulation extends Application{
 				
 		// Train
 		RailwayTracks track = mapBuilder.getTrack("Royal");
-		Train train = new Train(track.getEndX()+100,track.getEndY()-25);
+		Train train = new Train(track.getEndX()+100,track.getEndY()-25, Direction.WEST);
 		root.getChildren().add(train.getImageView());
 		
 		RailwayTracks track2 = mapBuilder.getTrack("New");
-		track2.toString();
-		Train train2 = new Train(track2.getEndX()+100,track2.getEndY()-25);
+
+		Train train2 = new Train(track2.getStartX()-100,track2.getStartY()-25, Direction.EAST);
 		root.getChildren().add(train2.getImageView());
 		
 		for(CrossingGate gate: mapBuilder.getAllGates()) {
@@ -70,8 +71,10 @@ public class Simulation extends Application{
 				
 				if (train.offScreen())
 					train.reset();
+					
+				if (train2.offScreen())
 					train2.reset();
-						
+				
 				clearCars();				
 			}
 		}.start();

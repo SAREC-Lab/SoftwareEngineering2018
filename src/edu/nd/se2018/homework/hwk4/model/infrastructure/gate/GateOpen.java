@@ -2,7 +2,6 @@ package edu.nd.se2018.homework.hwk4.model.infrastructure.gate;
 
 /**
  * Gate in open state
- * @author jane
  *
  */
 public class GateOpen implements IGateState {
