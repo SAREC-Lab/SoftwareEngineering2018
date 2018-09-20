@@ -9,7 +9,6 @@ import javafx.scene.shape.Line;
 
 /** 
  * Draws a track
- * @author jane
  *
  */
 public class TracksDisplay implements IDisplay {

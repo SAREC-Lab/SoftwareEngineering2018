@@ -3,13 +3,13 @@ package edu.nd.se2018.homework.hwk4;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import edu.nd.sarec.railwaycrossing.model.infrastructure.MapBuilder;
-import edu.nd.sarec.railwaycrossing.model.infrastructure.RailwayTracks;
-import edu.nd.sarec.railwaycrossing.model.infrastructure.Road;
-import edu.nd.sarec.railwaycrossing.model.infrastructure.gate.CrossingGate;
-import edu.nd.sarec.railwaycrossing.model.vehicles.Car;
-import edu.nd.sarec.railwaycrossing.model.vehicles.Train;
-import edu.nd.sarec.railwaycrossing.view.MapDisplay;
+import edu.nd.se2018.homework.hwk4.model.infrastructure.MapBuilder;
+import edu.nd.se2018.homework.hwk4.model.infrastructure.RailwayTracks;
+import edu.nd.se2018.homework.hwk4.model.infrastructure.Road;
+import edu.nd.se2018.homework.hwk4.model.infrastructure.gate.CrossingGate;
+import edu.nd.se2018.homework.hwk4.model.vehicles.Car;
+import edu.nd.se2018.homework.hwk4.model.vehicles.Train;
+import edu.nd.se2018.homework.hwk4.view.MapDisplay;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -45,8 +45,15 @@ public class Simulation extends Application{
 		Train train = new Train(track.getEndX()+100,track.getEndY()-25);
 		root.getChildren().add(train.getImageView());
 		
-		for(CrossingGate gate: mapBuilder.getAllGates())
+		RailwayTracks track2 = mapBuilder.getTrack("New");
+		track2.toString();
+		Train train2 = new Train(track2.getEndX()+100,track2.getEndY()-25);
+		root.getChildren().add(train2.getImageView());
+		
+		for(CrossingGate gate: mapBuilder.getAllGates()) {
 			train.addObserver(gate);
+			train2.addObserver(gate);
+		}
 				
 		// Sets up a repetitive loop i.e., in handle that runs the actual simulation
 		new AnimationTimer(){
@@ -56,12 +63,14 @@ public class Simulation extends Application{
 			
 				createCar();
 				train.move();
+				train2.move();
 				
 				for(CrossingGate gate: mapBuilder.getAllGates())
 					gate.operateGate();
 				
 				if (train.offScreen())
 					train.reset();
+					train2.reset();
 						
 				clearCars();				
 			}

@@ -22,7 +22,7 @@ public class Train extends Observable implements IVehicle{
 		this.currentX = x;
 		this.currentY = y;
 		originalX = x;
-		img = new Image("images/Train.PNG" ,120,trainLength,false,false);
+		img = new Image("/images/Train.PNG" ,120,trainLength,false,false);
 		imgView = new ImageView(img);
 		imgView.setX(currentX);
 		imgView.setY(currentY);

@@ -4,7 +4,6 @@ import java.awt.Point;
 
 /**
  * Railway Tracks (Entity Object)
- * @author Jane Cleland-Huang
  *
  */
 public class RailwayTracks {
