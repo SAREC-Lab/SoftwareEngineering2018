@@ -10,7 +10,6 @@ import edu.nd.se2018.homework.hwk4.model.infrastructure.gate.CrossingGate;
 
 /**
  * Very basic car factory.  Creates the car and registers it with the crossing gate and the car infront of it.
- * @author jane
  *
  */
 public class CarFactory {
@@ -20,13 +19,15 @@ public class CarFactory {
 	private ArrayList<Car> cars = new ArrayList<Car>();
 	Direction direction;
 	Point location;
+	int roadNum;
 	
 	public CarFactory(){}
 	
-	public CarFactory(Direction direction, Point location, Collection<CrossingGate> gates){
+	public CarFactory(Direction direction, Point location, Collection<CrossingGate> gates, int road){
 		this.direction = direction;
 		this.location = location;
 		this.gates = gates;
+		this.roadNum = road;
 	}
 	
 	
@@ -36,16 +37,61 @@ public class CarFactory {
 			Car car = new Car(location.x,location.y);	
 			double speedVariable = (Math.random() * 10)/10;
 			car.setSpeed((2-speedVariable)*1.5); 
-			
-			// All cars created by this factory must be aware of crossing gates in the road
-			for(CrossingGate gate: gates){
-				gate.addObserver(car);
-				if(gate != null && gate.getTrafficCommand()=="STOP")
-					car.setGateDownFlag(false);
+			if (Math.floor(speedVariable * 10) % 4 == 0) {
+				car.turn = true;
 			}
 			
+			// All cars created by this factory must be aware of crossing gates in the road
+			if (roadNum == 0) {
+				for(CrossingGate gate: gates){
+					if (gate.gateName == "Gate2") {
+						gate.addObserver(car);
+					}
+					if(gate != null && gate.getTrafficCommand()=="STOP") {
+						car.setGateDownFlag(false);
+					}
+				}
+			}
+			else if (roadNum == 1) { 
+				if (car.turn == false) {
+					for(CrossingGate gate: gates){
+						if (gate.gateName == "Gate1") {
+							gate.addObserver(car);
+						}
+						if(gate != null && gate.getTrafficCommand()=="STOP") {
+							car.setGateDownFlag(false);
+						}
+					}
+				}
+				else {
+					for(CrossingGate gate: gates){
+						if (gate.gateName == "Gate2") {
+							gate.addObserver(car);
+						}
+						if(gate != null && gate.getTrafficCommand()=="STOP") {
+							car.setGateDownFlag(false);
+						}
+					}
+				}
+			}
+			/*else {
+				for(CrossingGate gate: gates){
+					if (gate.gateName == "Gate1") {
+						gate.addObserver(car);
+					}
+					if(gate != null && gate.getTrafficCommand()=="STOP") {
+						car.setGateDownFlag(false);
+					}
+				}
+			}*/
+			/*for(CrossingGate gate: gates){
+				//gate.addObserver(car);
+				if(gate != null && gate.getTrafficCommand()=="STOP")
+					car.setGateDownFlag(false);
+				}*/
+			
 			// Each car must observe the car infront of it so it doesn't collide with it.
-			if (previousCar != null)
+			if (previousCar != null && previousCar.turn == false)
 				previousCar.addObserver(car);
 			previousCar = car;
 			

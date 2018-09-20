@@ -20,6 +20,7 @@ public class Car extends Observable implements IVehicle, Observer{
 	private boolean gateDown = false;
 	private double leadCarY = -1;  // Current Y position of car directly infront of this one
 	private double speed = 0.5;
+	public boolean turn = false;
 		
 	/**
 	 * Constructor
@@ -63,8 +64,27 @@ public class Car extends Observable implements IVehicle, Observer{
 			canMove = false;
 		
 		if (canMove){
-			currentY+=speed;
-			ivCar.setY(currentY);
+			if (turn == false) {
+				currentY+=speed;
+				ivCar.setY(currentY);
+			}
+			else {
+				if (currentY >= 282 && currentY <= 300) {
+					if (currentX < 800 && currentX > 400) {
+						currentX -= speed;
+						ivCar.setX(currentX);
+					}
+					else {
+						currentY+=speed;
+						ivCar.setY(currentY);
+					}
+					
+				}
+				else {
+					currentY+=speed;
+					ivCar.setY(currentY);
+				}
+			}
 			setChanged();
 			notifyObservers();
 		}

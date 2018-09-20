@@ -34,7 +34,7 @@ public class CrossingGate extends Observable implements Observer{
 	private Line line; 
 	private Pane root;
 	
-	String gateName;
+	public String gateName;
 	
 	public CrossingGate(){}
 	
@@ -127,26 +127,25 @@ public class CrossingGate extends Observable implements Observer{
 		if (o instanceof Train){
 			Train train = (Train)o;
 			if (train.getDirection() == Direction.WEST) {
-				System.out.println("west train:");
-				if (train.getVehicleX() < exitPoint1 && train.getVehicleX() < triggerPoint2) {
+				if (train.getVehicleX() < exitPoint1) {
 					if (train2 == false) {
 						currentGateState.leaveStation();
 					}
 					train1 = false;
 				}
-				else if(train.getVehicleX() > triggerPoint1 || train.getVehicleX() < triggerPoint2) {
+				else if(train.getVehicleX() < triggerPoint1) { //|| train.getVehicleX() < triggerPoint2) {
 					currentGateState.approachStation();
 					train1 = true;
 				}
 			}
 			else if (train.getDirection() == Direction.EAST) {
-				if (train.getVehicleX() > exitPoint2 && train.getVehicleX() > triggerPoint1) {
+				if (train.getVehicleX() > exitPoint2) {
 					if (train1 == false) {
 						currentGateState.leaveStation();
 					}
 					train2 = false;
 				}
-				else if (train.getVehicleX() > triggerPoint2 || train.getVehicleX() < triggerPoint1) {
+				else if (train.getVehicleX() > triggerPoint2) { //|| train.getVehicleX() < triggerPoint1) {
 					currentGateState.approachStation();
 					train2 = true;
 				}
