@@ -46,7 +46,6 @@ public class MapBuilder {
 		roads.get("Western Highway").assignGate(gates.get("Gate1"));
 		roads.get("Western Highway").assignGate(gates.get("Gate2"));
 		roads.get("Skyway").assignGate(gates.get("Gate2"));
-		//roads.get("Skyway").assignGate(gates.get("Gate2"));
 	}
 	
 	private void buildCarFactories(){
