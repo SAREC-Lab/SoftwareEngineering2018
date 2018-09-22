@@ -1,9 +1,13 @@
 package edu.nd.sarec.railwaycrossing.model.infrastructure.gate;
 
+import java.util.Collection;
 import java.util.Observable;
 import java.util.Observer;
 
+import edu.nd.sarec.railwaycrossing.model.infrastructure.Direction;
+import edu.nd.sarec.railwaycrossing.model.vehicles.OppositeTrain;
 import edu.nd.sarec.railwaycrossing.model.vehicles.Train;
+import edu.nd.sarec.railwaycrossing.model.vehicles.TrainFactory;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
@@ -40,8 +44,8 @@ public class CrossingGate extends Observable implements Observer{
 		anchorY = yPosition;
 		movingX = anchorX;
 		movingY = anchorY-60;
-		triggerPoint = anchorX+250;
-		exitPoint = anchorX-250;
+		triggerPoint = anchorX+300;
+		exitPoint = anchorX-300;
 		
 		// Gate elements
 		line = new Line(anchorX, anchorY,movingX,movingY);
@@ -117,13 +121,35 @@ public class CrossingGate extends Observable implements Observer{
 	
 	@Override
 	public void update(Observable o, Object arg) {
-		if (o instanceof Train){
-			Train train = (Train)o;
-			if (train.getVehicleX() < exitPoint)
-				currentGateState.leaveStation();
-			else if(train.getVehicleX() < triggerPoint){
+//		if (o instanceof Train){
+//			Train train = (Train)o;
+//			if ((train.dir == Direction.WEST && train.getVehicleX() < exitPoint) || (train.dir == Direction.EAST && train.getVehicleX() > triggerPoint))
+//				currentGateState.leaveStation();
+//			else if((train.dir == Direction.WEST && train.getVehicleX() < triggerPoint) || (train.dir == Direction.EAST && train.getVehicleX() > exitPoint)){
+//				currentGateState.approachStation();
+//			}
+//		}
+		if (o instanceof TrainFactory){
+			TrainFactory trainFactory = (TrainFactory)o;
+			boolean closeGate = false;
+			Collection<Train> trains = trainFactory.getTrainFactory();
+			for (Train train: trains) {
+				double currentX = train.getVehicleX();
+				if (train.getTrainDirection() == Direction.WEST && currentX < triggerPoint && currentX > exitPoint) {
+					closeGate = true;
+				}
+				
+				if (train.getTrainDirection() == Direction.EAST && currentX > exitPoint && currentX < triggerPoint) {
+					closeGate = true;
+				}
+			}
+			if (closeGate) {
 				currentGateState.approachStation();
-			} 
-		}	
+			} else {
+				currentGateState.leaveStation();
+
+			}
+
+		}
 	}
 }

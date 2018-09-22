@@ -2,6 +2,7 @@ package edu.nd.sarec.railwaycrossing.model.vehicles;
 
 import java.util.Observable;
 
+import edu.nd.sarec.railwaycrossing.model.infrastructure.Direction;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -18,15 +19,23 @@ public class Train extends Observable implements IVehicle{
 	private Image img;
 	private ImageView imgView;
 	private int trainLength = 35;
+	public Direction dir = Direction.WEST;
 	
-	public Train(int x, int y){
+	public Train(int x, int y, Direction dir){
 		this.currentX = x;
 		this.currentY = y;
 		originalX = x;
-		img = new Image("images\\Train.PNG",120,trainLength,false,false);
-		imgView = new ImageView(img);
+		if(dir == Direction.WEST) {
+			img = new Image("/images/Train.PNG",120,trainLength,false,false);
+			imgView = new ImageView(img);
+		}
+		else if(dir == Direction.EAST) {
+			img = new Image("/images/TrainReverse.PNG",120,trainLength,false,false);
+			imgView = new ImageView(img);
+		}
 		imgView.setX(currentX);
 		imgView.setY(currentY);
+		this.dir = dir;
 	}
 	
 	public double getVehicleX(){
@@ -38,14 +47,19 @@ public class Train extends Observable implements IVehicle{
 	}
 	
 	public void move(){
-		currentX-=2;
+		if(this.getTrainDirection() == Direction.WEST) {
+			currentX-=2;
+		} else if(this.getTrainDirection() == Direction.EAST) {
+			currentX+=2;
+		}
+		
 		imgView.setX(currentX);
 		setChanged();
 		notifyObservers();
 	}
 	
 	public boolean offScreen(){
-		if (currentX < -200)
+		if (currentX < -200 || currentX > 1400)
 			return true;
 		else
 			return false;				
@@ -58,5 +72,9 @@ public class Train extends Observable implements IVehicle{
 	//@Override
 	public Node getImageView() {
 		return imgView;
+	}
+	
+	public Direction getTrainDirection() {
+		return dir;
 	}
 }
