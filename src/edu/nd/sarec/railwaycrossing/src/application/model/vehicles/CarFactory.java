@@ -1,11 +1,11 @@
-package edu.nd.sarec.railwaycrossing.model.vehicles;
+package application.model.vehicles;
 
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import edu.nd.sarec.railwaycrossing.model.infrastructure.Direction;
-import edu.nd.sarec.railwaycrossing.model.infrastructure.gate.CrossingGate;
+import application.model.infrastructure.Direction;
+import application.model.infrastructure.gate.CrossingGate;
 
 
 /**
@@ -35,7 +35,7 @@ public class CarFactory {
 		if (previousCar == null || location.y < previousCar.getVehicleY()-100){
 			Car car = new Car(location.x,location.y);	
 			double speedVariable = (Math.random() * 10)/10;
-			car.setSpeed((2-speedVariable)*1.5); 
+			car.setSpeed((2-speedVariable)*.75); 
 			
 			// All cars created by this factory must be aware of crossing gates in the road
 			for(CrossingGate gate: gates){

@@ -1,9 +1,9 @@
-package edu.nd.sarec.railwaycrossing.model.infrastructure.gate;
+package application.model.infrastructure.gate;
 
 import java.util.Observable;
 import java.util.Observer;
 
-import edu.nd.sarec.railwaycrossing.model.vehicles.Train;
+import application.model.vehicles.Train;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
@@ -22,7 +22,7 @@ public class CrossingGate extends Observable implements Observer{
 	private int movingY;
 	private int triggerPoint;
 	private int exitPoint;
-
+	
 	private IGateState gateClosed;
 	private IGateState gateOpen;
 	private IGateState gateClosing;
@@ -40,8 +40,8 @@ public class CrossingGate extends Observable implements Observer{
 		anchorY = yPosition;
 		movingX = anchorX;
 		movingY = anchorY-60;
-		triggerPoint = anchorX+250;
-		exitPoint = anchorX-250;
+		triggerPoint = anchorX+400;
+		exitPoint = anchorX-400;
 		
 		// Gate elements
 		line = new Line(anchorX, anchorY,movingX,movingY);
@@ -119,11 +119,22 @@ public class CrossingGate extends Observable implements Observer{
 	public void update(Observable o, Object arg) {
 		if (o instanceof Train){
 			Train train = (Train)o;
-			if (train.getVehicleX() < exitPoint)
-				currentGateState.leaveStation();
-			else if(train.getVehicleX() < triggerPoint){
-				currentGateState.approachStation();
-			} 
+			if (train.getDirection() == 0) {
+				if (train.getVehicleX() < exitPoint) {
+					currentGateState.leaveStation();
+				}
+				else if(train.getVehicleX() < triggerPoint){
+					currentGateState.approachStation();
+				} 
+			}
+			else {
+				if (train.getVehicleX() > triggerPoint) {
+					currentGateState.leaveStation();
+				}
+				else if(train.getVehicleX() > exitPoint){
+					currentGateState.approachStation();
+				} 
+			}
 		}	
 	}
 }

@@ -1,10 +1,11 @@
-package edu.nd.sarec.railwaycrossing.model.vehicles;
+package application.model.vehicles;
 
 import java.util.Observable;
 import java.util.Observer;
+import java.util.Random;
 
-import edu.nd.sarec.railwaycrossing.model.infrastructure.gate.CrossingGate;
-import edu.nd.sarec.railwaycrossing.view.CarImageSelector;
+import application.model.infrastructure.gate.CrossingGate;
+import application.view.CarImageSelector;
 import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 
@@ -21,6 +22,9 @@ public class Car extends Observable implements IVehicle, Observer{
 	private boolean gateDown = false;
 	private double leadCarY = -1;  // Current Y position of car directly infront of this one
 	private double speed = 0.5;
+	Random r = new Random();
+	
+	public int directionState;
 		
 	/**
 	 * Constructor
@@ -34,6 +38,7 @@ public class Car extends Observable implements IVehicle, Observer{
 		ivCar = new ImageView(CarImageSelector.getImage());
 		ivCar.setX(getVehicleX());
 		ivCar.setY(getVehicleY());
+		directionState = r.nextInt(2);
 	}
 		
 	@Override
@@ -60,15 +65,50 @@ public class Car extends Observable implements IVehicle, Observer{
 			canMove = false;
 		
 		// Second case. Car is too close too other car.
-		if (leadCarY != -1  && getDistanceToLeadCar() < 50)
+		if (leadCarY != -1  && getDistanceToLeadCar() < 150)
 			canMove = false;
 		
 		if (canMove){
-			currentY+=speed;
-			ivCar.setY(currentY);
-			setChanged();
-			notifyObservers();
+			if (directionState == 0) {
+				currentY+=speed;
+				ivCar.setY(currentY);
+			}
+			else if (directionState == 1) {
+				if (currentY <= 690) {
+					currentY+=speed;
+					ivCar.setY(currentY);
+				}
+				else {
+					if (currentX < 600) {
+						directionState = 2;
+					}
+					else {
+						directionState = 3;
+					}
+				}
+			}
+			if (directionState == 2) {
+				if (currentX < 790) {
+					currentX+=speed;
+					ivCar.setX(currentX);
+				}
+				else {
+					directionState = 0;
+				}
+			}
+			if (directionState == 3) {
+				if (currentX > 390) {
+					currentX-=speed;
+					ivCar.setX(currentX);
+				}
+				else {
+					directionState = 0;
+				}
+			}
 		}
+		
+		setChanged();
+		notifyObservers();
 	}
 	
 	public void setSpeed(double speed){

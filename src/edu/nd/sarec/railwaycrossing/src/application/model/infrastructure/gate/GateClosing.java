@@ -1,4 +1,4 @@
-package edu.nd.sarec.railwaycrossing.model.infrastructure.gate;
+package application.model.infrastructure.gate;
 
 /**
  * Gate in closing state

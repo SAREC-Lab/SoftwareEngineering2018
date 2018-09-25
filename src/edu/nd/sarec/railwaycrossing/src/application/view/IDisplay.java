@@ -1,4 +1,4 @@
-package edu.nd.sarec.railwaycrossing.view;
+package application.view;
 
 public interface IDisplay {
 	public void draw();

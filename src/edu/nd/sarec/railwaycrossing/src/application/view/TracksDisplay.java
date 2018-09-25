@@ -1,8 +1,8 @@
-package edu.nd.sarec.railwaycrossing.view;
+package application.view;
 
 import java.util.Collection;
 
-import edu.nd.sarec.railwaycrossing.model.infrastructure.RailwayTracks;
+import application.model.infrastructure.RailwayTracks;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Line;
 
