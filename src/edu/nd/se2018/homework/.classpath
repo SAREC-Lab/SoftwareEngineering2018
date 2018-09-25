@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="hwk1"/>
+	<classpathentry kind="src" path="hwk2"/>
+	<classpathentry kind="src" path="hwk4/src"/>
+	<classpathentry kind="src" path="hwk5/src"/>
+	<classpathentry kind="con" path="org.eclipse.fx.ide.jdt.core.JAVAFX_CONTAINER"/>
+	<classpathentry kind="output" path="hwk4/bin"/>
+</classpath>

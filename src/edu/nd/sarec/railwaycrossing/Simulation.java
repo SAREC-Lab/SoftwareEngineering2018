@@ -1,4 +1,4 @@
-package src;
+package edu.nd.sarec.railwaycrossing;
 
 import java.util.ArrayList;
 import java.util.Collection;

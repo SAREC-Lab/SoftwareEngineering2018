@@ -1,11 +1,11 @@
-package src;
+package application.model.infrastructure;
 
 import java.awt.Point;
 import java.util.Collection;
 import java.util.Vector;
 
-import model.infrastructure.gate.CrossingGate;
-import model.vehicles.CarFactory;
+import application.model.infrastructure.gate.CrossingGate;
+import application.model.vehicles.CarFactory;
 
 /**
  * Represents a single road

@@ -1,15 +1,15 @@
-package src;
+package application;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
-import model.infrastructure.MapBuilder;
-import model.infrastructure.RailwayTracks;
-import model.infrastructure.Road;
-import model.infrastructure.gate.CrossingGate;
-import model.vehicles.Car;
-import model.vehicles.Train;
-import view.MapDisplay;
+import application.model.infrastructure.MapBuilder;
+import application.model.infrastructure.RailwayTracks;
+import application.model.infrastructure.Road;
+import application.model.infrastructure.gate.CrossingGate;
+import application.model.vehicles.Car;
+import application.model.vehicles.Train;
+import application.view.MapDisplay;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -42,11 +42,17 @@ public class Simulation extends Application{
 				
 		// Train
 		RailwayTracks track = mapBuilder.getTrack("Royal");
-		Train train = new Train(track.getEndX()+100,track.getEndY()-25);
+		Train train = new Train(track.getEndX()+100,track.getEndY()-25,true);
 		root.getChildren().add(train.getImageView());
+		// train 2
+		RailwayTracks track2 = mapBuilder.getTrack("Royal2");
+		Train train2 = new Train(track2.getEndX()-1300,track2.getEndY()+75,false);
+		root.getChildren().add(train2.getImageView());
 		
-		for(CrossingGate gate: mapBuilder.getAllGates())
+		for(CrossingGate gate: mapBuilder.getAllGates()) {
 			train.addObserver(gate);
+			train2.addObserver(gate);
+		}
 				
 		// Sets up a repetitive loop i.e., in handle that runs the actual simulation
 		new AnimationTimer(){
@@ -56,12 +62,15 @@ public class Simulation extends Application{
 			
 				createCar();
 				train.move();
+				train2.moveB();
 				
 				for(CrossingGate gate: mapBuilder.getAllGates())
 					gate.operateGate();
 				
 				if (train.offScreen())
 					train.reset();
+				if (train2.offScreen())
+					train2.resetL();
 						
 				clearCars();				
 			}

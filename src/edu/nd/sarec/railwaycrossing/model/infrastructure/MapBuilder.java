@@ -1,10 +1,10 @@
-package model.infrastructure;
+package edu.nd.sarec.railwaycrossing.model.infrastructure;
 
 import java.awt.Point;
 import java.util.Collection;
 import java.util.HashMap;
 
-import model.infrastructure.gate.CrossingGate;
+import edu.nd.sarec.railwaycrossing.model.infrastructure.gate.CrossingGate;
 
 /**
  * Creates all infrastructure for the simulation
