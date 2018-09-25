@@ -33,9 +33,12 @@ public class CarFactory {
 	// Most code here is to create random speeds
 	public Car buildCar(){
 		if (previousCar == null || location.y < previousCar.getVehicleY()-100){
-			Car car = new Car(location.x,location.y);	
+			Car car = new Car(location.x,location.y);
 			double speedVariable = (Math.random() * 10)/10;
-			car.setSpeed((2-speedVariable)*1.5); 
+			car.setSpeed((2-speedVariable)*1.3);
+			
+			if ((int)(Math.random()*100) < 40 && location.x > 700) 		// controls how often a random car is chosen to turn down the eat road
+				car.setTurn(true);
 			
 			// All cars created by this factory must be aware of crossing gates in the road
 			for(CrossingGate gate: gates){
@@ -54,7 +57,8 @@ public class CarFactory {
 		} else 
 			return null;
 	}
-
+	
+	
 	// We will get a concurrency error if we try to delete cars whilst iterating through the array list
 	// so we perform this in two stages.
 	// 1.  Loop through the list and identify which cars are off the screen.  Add them to 'toDelete' array.
