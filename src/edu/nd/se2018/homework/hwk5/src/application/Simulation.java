@@ -23,6 +23,7 @@ public class Simulation extends Application{
 	private Scene scene;
 	private MapBuilder mapBuilder;
 	private MapDisplay mapDisplay;
+	private intersection I;
 	
 	@Override  
 	public void start(Stage stage) throws Exception {
@@ -35,6 +36,7 @@ public class Simulation extends Application{
 		mapDisplay.drawTracks();		
 		mapDisplay.drawRoad();
 		mapDisplay.drawGate();
+		
 		
 		scene = new Scene(root,1200,1000);
 		stage.setTitle("Railways");
@@ -63,6 +65,7 @@ public class Simulation extends Application{
 			public void handle(long now) {
 			
 				createCar();
+				//if(I.intersectionCheck(mapBuilder.getRoads()))
 				train.move();
 				train2.moveB();
 				
@@ -96,10 +99,7 @@ public class Simulation extends Application{
 			if (road.getCarFactory() != null){
 				if ((int)(Math.random() * 100) == 15){
 					Car car = road.getCarFactory().buildCar();
-					// Intersection
-					intersection I = new intersection(roads);
-					boolean valid = I.intersectionCheck();
-					
+					// send a valid move to the car.move()
 					if (car != null){
 						root.getChildren().add(car.getImageView());
 					}

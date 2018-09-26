@@ -1,0 +1,4 @@
+The intersection class, if continued to build up would be helpful. as well as the logic behind syncing the gate. This would
+allow for things like a different sized train, or more gates to be added and the cars will still not cross wrongly. What would
+not scale well would be the turing logic. Since it is based on car location you would need to go in a map all the intersections
+based on cordinates instead of being able to drag and drop an intersection if one was added or not mapped in the first place. 

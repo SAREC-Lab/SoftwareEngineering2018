@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import application.model.infrastructure.Road;
 import application.model.vehicles.Car;
+import application.model.infrastructure.MapBuilder;
 
 
 public class intersection {
@@ -19,7 +20,8 @@ public class intersection {
 
 
 
-	public boolean intersectionCheck() {
+	public boolean intersectionCheck(Collection<Road> roads) {
+		
 		for(Road road:roads) {
 			cars = road.getCarFactory().getCars();
 			for(Car car:cars) {
