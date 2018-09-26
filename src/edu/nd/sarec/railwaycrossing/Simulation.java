@@ -9,6 +9,7 @@ import edu.nd.sarec.railwaycrossing.model.infrastructure.Road;
 import edu.nd.sarec.railwaycrossing.model.infrastructure.gate.CrossingGate;
 import edu.nd.sarec.railwaycrossing.model.vehicles.Car;
 import edu.nd.sarec.railwaycrossing.model.vehicles.Train;
+import edu.nd.sarec.railwaycrossing.model.vehicles.Train2;
 import edu.nd.sarec.railwaycrossing.view.MapDisplay;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
@@ -42,12 +43,19 @@ public class Simulation extends Application{
 				
 		// Train
 		RailwayTracks track = mapBuilder.getTrack("Royal");
+		RailwayTracks track2 = mapBuilder.getTrack2("Gold");
 		Train train = new Train(track.getEndX()+100,track.getEndY()-25);
+		Train2 train2 = new Train2(track2.getStartX()-100,track2.getEndY()-25);
 		root.getChildren().add(train.getImageView());
-		
-		for(CrossingGate gate: mapBuilder.getAllGates())
-			train.addObserver(gate);
-				
+		root.getChildren().add(train2.getImageView());
+		//for(CrossingGate gate: mapBuilder.getAllGates())
+			//train.addObserver(gate);
+		//for(CrossingGate gate: mapBuilder.getAllGates())
+			//train2.addObserver(gate);
+		train.addObserver(mapBuilder.setGate("Gate1"));
+		train.addObserver(mapBuilder.setGate("Gate2"));
+		train2.addObserver(mapBuilder.setGate("Gate3"));
+		train2.addObserver(mapBuilder.setGate("Gate4"));
 		// Sets up a repetitive loop i.e., in handle that runs the actual simulation
 		new AnimationTimer(){
 
@@ -55,13 +63,17 @@ public class Simulation extends Application{
 			public void handle(long now) {
 			
 				createCar();
-				train.move();
+				train.moveWest();
+				train2.moveEast();
 				
 				for(CrossingGate gate: mapBuilder.getAllGates())
 					gate.operateGate();
 				
 				if (train.offScreen())
 					train.reset();
+				
+				if (train2.offScreen())
+					train2.reset();
 						
 				clearCars();				
 			}

@@ -35,7 +35,10 @@ public class CarFactory {
 		if (previousCar == null || location.y < previousCar.getVehicleY()-100){
 			Car car = new Car(location.x,location.y);	
 			double speedVariable = (Math.random() * 10)/10;
-			car.setSpeed((2-speedVariable)*1.5); 
+			car.setSpeed((2-speedVariable)*1.2); 
+			
+			if ((int)(Math.random()*100) < 50 && location.x > 700)
+				car.setTurn(true);
 			
 			// All cars created by this factory must be aware of crossing gates in the road
 			for(CrossingGate gate: gates){
@@ -63,7 +66,7 @@ public class CarFactory {
 		// Removing cars from the array list.
 		ArrayList<Car> toDelete = new ArrayList<Car>();
 		for(Car car: cars){
-			car.move();					
+			car.moveSouth();					
 			if (car.offScreen())
 				toDelete.add(car);
 			
