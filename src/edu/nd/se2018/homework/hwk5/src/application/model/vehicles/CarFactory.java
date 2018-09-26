@@ -54,6 +54,9 @@ public class CarFactory {
 		} else 
 			return null;
 	}
+	public ArrayList<Car> getCars(){
+		return cars;
+	}
 
 	// We will get a concurrency error if we try to delete cars whilst iterating through the array list
 	// so we perform this in two stages.

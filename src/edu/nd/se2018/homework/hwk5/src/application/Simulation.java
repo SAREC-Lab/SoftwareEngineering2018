@@ -6,6 +6,7 @@ import java.util.Collection;
 import application.model.infrastructure.MapBuilder;
 import application.model.infrastructure.RailwayTracks;
 import application.model.infrastructure.Road;
+import application.model.infrastructure.intersection;
 import application.model.infrastructure.gate.CrossingGate;
 import application.model.vehicles.Car;
 import application.model.vehicles.Train;
@@ -39,6 +40,7 @@ public class Simulation extends Application{
 		stage.setTitle("Railways");
 		stage.setScene(scene);
 		stage.show();
+		
 				
 		// Train
 		RailwayTracks track = mapBuilder.getTrack("Royal");
@@ -94,12 +96,17 @@ public class Simulation extends Application{
 			if (road.getCarFactory() != null){
 				if ((int)(Math.random() * 100) == 15){
 					Car car = road.getCarFactory().buildCar();
+					// Intersection
+					intersection I = new intersection(roads);
+					boolean valid = I.intersectionCheck();
+					
 					if (car != null){
 						root.getChildren().add(car.getImageView());
 					}
 				}
 			}
 		}
+		
 	}
 	
 	public static void main(String[] args){

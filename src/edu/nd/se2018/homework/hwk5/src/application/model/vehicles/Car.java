@@ -69,12 +69,16 @@ public class Car extends Observable implements IVehicle, Observer{
 		
 		if (canMove){
 			if(swerve > 7 && currentY > 700 && currentX > 385) {
-					currentX -= speed;
+					leadCarY = -1;
+					currentX -= speed*2;
 					ivCar.setX(currentX);
-			}else
+					removeLeadCar();
+			}else {
 			currentY+=speed;
 			ivCar.setY(currentY);
+			}
 		}
+
 		setChanged();
 		notifyObservers();
 	}

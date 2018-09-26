@@ -25,7 +25,11 @@ public class Train extends Observable implements IVehicle{
 		this.currentX = x;
 		this.currentY = y;
 		originalX = x;
-		img = new Image("file:/Users/connorgreen/git/SoftwareEngineering2018/src/images/Train.PNG",120,trainLength,false,false);
+		if(dir) {
+			img = new Image("file:/Users/connorgreen/git/SoftwareEngineering2018/src/images/Train.PNG",120,trainLength,false,false);
+		}else {
+			img = new Image("file:/Users/connorgreen/git/SoftwareEngineering2018/src/images/TrainReverse.PNG",120,trainLength,false,false);
+		}
 		imgView = new ImageView(img);
 		imgView.setX(currentX);
 		imgView.setY(currentY);
