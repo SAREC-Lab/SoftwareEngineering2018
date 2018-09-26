@@ -75,10 +75,10 @@ public class Car extends Observable implements IVehicle, Observer{
 		if (!inJunction && currentX == 791.0 && currentY > 340 && currentY < 341.5 && Math.random() < 0.5){
 			inJunction = true;
 			
-			// remove observer
+			// like in a linked list, remove car node and connect loose pointers
+			// tried to implement but didn't work
 			/*this.deleteObservers();
 			
-			// like in a linked list, connect loose pointers
 			Car observed = null;
 			Car observer = null;
 			for(int i=0; i<factory.getCars().size(); i++){
@@ -93,6 +93,7 @@ public class Car extends Observable implements IVehicle, Observer{
 			if(observed != null)
 				observed.addObserver(observer);
 			*/
+			
 			// observe last car added to West road
 			factory.getOtherCarFactory().getPreviousCar().addObserver(this);
 			factory.getOtherCarFactory().setPreviousCar(this);
