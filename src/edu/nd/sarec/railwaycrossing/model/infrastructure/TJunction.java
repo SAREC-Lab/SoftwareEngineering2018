@@ -20,7 +20,6 @@ public class TJunction {
 		roadLists.put("EW", new Vector<Car>());
 		roadLists.put("SE", new Vector<Car>());
 		roadLists.put("SW", new Vector<Car>());
-
 	}
 
 	public HashMap<String, Collection<Car>> getSubRoadLists() {
