@@ -22,10 +22,11 @@ public class Road {
 	Collection<CrossingGate> gates;
 	boolean clearEnds = false;
 	int roadSize;
+	private String roadName;
 	
 	public Road(){}
 	
-	public Road(Point start, Point end, Direction direction, boolean buildCarFactory, boolean clearEnds){
+	public Road(Point start, Point end, Direction direction, boolean buildCarFactory, boolean clearEnds, String roadName){
 		startX = start.x;
 		startY = start.y;
 		endX = end.x;
@@ -35,6 +36,7 @@ public class Road {
 		this.direction = direction;
 		gates = new Vector<CrossingGate>();
 		this.clearEnds = clearEnds;
+		this.roadName = roadName;
 		
 	}
 	
@@ -82,5 +84,9 @@ public class Road {
 	
 	public int getRoadWidth(){
 		return roadSize;
+	}
+	
+	public String getName() {
+		return roadName;
 	}
 }

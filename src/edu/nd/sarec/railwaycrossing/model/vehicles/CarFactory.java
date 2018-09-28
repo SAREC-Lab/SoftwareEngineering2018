@@ -46,8 +46,8 @@ public class CarFactory {
 		// Each car must observe the car infront of it so it doesn't collide with it.
 		if (previousCar != null)
 			previousCar.addObserver(car);
-		previousCar = car;
 		
+		previousCar = car;
 		cars.add(car);
 		return car;
 		

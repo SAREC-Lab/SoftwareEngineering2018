@@ -2,6 +2,7 @@ package edu.nd.sarec.railwaycrossing.model.vehicles;
 
 import java.util.Observable;
 import java.util.Observer;
+import java.util.Random;
 
 import edu.nd.sarec.railwaycrossing.model.infrastructure.gate.CrossingGate;
 import edu.nd.sarec.railwaycrossing.view.CarImageSelector;
@@ -19,8 +20,13 @@ public class Car extends Observable implements IVehicle, Observer{
 	private double currentY = 0;
 	private double originalY = 0;
 	private boolean gateDown = false;
+	private double leadCarX = -1;
 	private double leadCarY = -1;  // Current Y position of car directly infront of this one
 	private double speed = 0.5;
+	boolean canMove = true;
+	boolean ewBound = false;
+	private String leadCarMessage = "S";
+	boolean westBound;
 		
 	/**
 	 * Constructor
@@ -34,6 +40,12 @@ public class Car extends Observable implements IVehicle, Observer{
 		ivCar = new ImageView(CarImageSelector.getImage());
 		ivCar.setX(getVehicleX());
 		ivCar.setY(getVehicleY());
+		Random ran = new Random();
+		if (ran.nextInt(2) == 1) {
+			westBound = true;
+		} else {
+			westBound = false;
+		}
 	}
 		
 	@Override
@@ -48,8 +60,13 @@ public class Car extends Observable implements IVehicle, Observer{
 	public double getVehicleX(){
 		return currentX;
 	}
+	
 	public double getVehicleY(){
 		return currentY;
+	}
+	
+	public Boolean getMovement() {
+		return canMove;
 	}
 	
 	public void move(){
@@ -60,15 +77,42 @@ public class Car extends Observable implements IVehicle, Observer{
 			canMove = false;
 		
 		// Second case. Car is too close too other car.
-		if (leadCarY != -1  && getDistanceToLeadCar() < 50)
+		if (leadCarMessage == "S" && leadCarY != -1  && getDistanceToLeadCarY() < 50)
 			canMove = false;
 		
-		if (canMove){
-			currentY+=speed;
+		if (leadCarMessage == "W" && leadCarX != -1 && getDistanceToLeadCarX() < 50)
+			canMove = false;
+		
+//		if (canMove){
+//			currentY+=speed;
+//		}
+//		ivCar.setY(currentY);
+//		setChanged();
+//		notifyObservers();
+		if (canMove){ 
+			if ((currentY > 632) && (currentY < 668) && westBound) {
+					currentX -= speed;
+					ewBound = true;
+					if ((currentX > 370) && (currentX < 390)) {
+						westBound = false;
+						ewBound = false;
+					}
+			} else {
+				currentY+=speed;
+				ewBound= false;
+			}
+			
 		}
+		
+		ivCar.setX(currentX);
 		ivCar.setY(currentY);
 		setChanged();
-		notifyObservers();
+		//notifyObservers();
+		if (ewBound) {
+			notifyObservers("W");
+		} else {
+			notifyObservers("S");
+		}
 	}
 	
 	public void setSpeed(double speed){
@@ -90,20 +134,37 @@ public class Car extends Observable implements IVehicle, Observer{
 		currentY = originalY;
 	}
 	
-	public double getDistanceToLeadCar(){
+	public double getDistanceToLeadCarX() {
+		return Math.abs(leadCarX-getVehicleX());
+		
+	}
+	
+	public double getDistanceToLeadCarY(){
 		return Math.abs(leadCarY-getVehicleY());
 	}
 	
-	public void removeLeadCar(){
+	public void removeLeadCarX(){
+		leadCarX = -1;
+	}
+	
+	public void removeLeadCarY(){
 		leadCarY = -1;
+	}
+	
+	public boolean isWestBound() {
+		return westBound;
 	}
 
 	@Override
 	public void update(Observable o, Object arg1) {
 		if (o instanceof Car){
+			leadCarMessage = (String)arg1;
 			leadCarY = (((Car)o).getVehicleY());
+			leadCarX = (((Car)o).getVehicleX());
 			if (leadCarY > 1020)
 				leadCarY = -1;
+			if (leadCarX > 390)
+				leadCarX = -1;
 		}
 			
 		if (o instanceof CrossingGate){

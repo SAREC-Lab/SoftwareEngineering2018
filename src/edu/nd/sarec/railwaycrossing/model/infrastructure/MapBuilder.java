@@ -15,22 +15,25 @@ public class MapBuilder {
 	HashMap<String, Road> roads;
 	HashMap<String, CrossingGate> gates;
 	HashMap<String, RailwayTracks> tracks;
+	HashMap<String, TJunction> tJunctions;
 	
 	public MapBuilder(){
 		roads = new HashMap<String,Road>();	
 		gates = new HashMap<String,CrossingGate>();
 		tracks = new HashMap<String,RailwayTracks>();
+		tJunctions = new HashMap<String, TJunction>();
 		buildRoads();
 		buildCrossingGates();
 		buildTracks();
 		assignGatesToRoads();
 		buildCarFactories();
+		buildTJunctions();
 	}
 
 	private void buildRoads(){
-		roads.put("Western Highway",new Road(new Point(800,0),new Point (800,1000),Direction.SOUTH,true,false));
-		roads.put("Skyway",new Road(new Point(400,0),new Point (400,1000),Direction.SOUTH,true,false));		
-		roads.put("EastWest",new Road(new Point(415,300),new Point (785,300),Direction.EAST,true,true));	
+		roads.put("Western Highway",new Road(new Point(800,0),new Point (800,1000),Direction.SOUTH,true,false,"Western Highway"));
+		roads.put("Skyway",new Road(new Point(400,0),new Point (400,1000),Direction.SOUTH,true,false,"Skyway"));		
+		roads.put("EastWest",new Road(new Point(415,650),new Point (785,650),Direction.EAST,true,true,"EastWest"));	
 	}
 	
 	private void buildCrossingGates(){
@@ -42,6 +45,10 @@ public class MapBuilder {
 		tracks.put("Royal", new RailwayTracks(new Point(0,500),new Point(1200,500)));
 		tracks.put("Layor", new RailwayTracks(new Point(0,550),new Point(1200,550)));
 		//tracks.put("Ankit", new RailwayTracks(new Point(0,1000),new Point(1,2)));
+	}
+	
+	private void buildTJunctions() {
+		tJunctions.put("tJunction", new TJunction());
 	}
 	
 	private void assignGatesToRoads(){
@@ -70,5 +77,11 @@ public class MapBuilder {
 		 if(tracks.containsKey(name))
 			 return tracks.get(name);
 		 else return null;
+	}
+	
+	public TJunction getTJunction(String name) {
+		if(tJunctions.containsKey(name))
+			return tJunctions.get(name);
+		else return null;
 	}
 }
