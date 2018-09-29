@@ -9,7 +9,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class ChipView implements Observer {
-	private ImageView view;
+	public ImageView view;
 	private Image chipImage;
 	
 	

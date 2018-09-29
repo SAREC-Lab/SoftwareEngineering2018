@@ -8,6 +8,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.Node;
 import javafx.stage.Stage;
+import edu.nd.se2018.homework.hwk6.controller.ChipController;
 import edu.nd.se2018.homework.hwk6.model.ChipModel;
 import edu.nd.se2018.homework.hwk6.view.*;
 
@@ -18,8 +19,9 @@ public class Main extends Application {
 	ImageView[][] tiles;
 	Image tileImage;
 	int scale = 20;
-	ChipModel chip;
+	//ChipModel chip;
 	ChipView chipView;
+	ChipController chipController;
 
 	@Override
 	public void start(Stage gameStage) throws Exception {
@@ -30,17 +32,34 @@ public class Main extends Application {
 		gameMap.setBlocks();
 		gameMap.drawMap(root.getChildren(), 20);
 
-		chip = new ChipModel(0, 0, gameMap.getMap());
+		/*chip = new ChipModel(0, 0, gameMap.getMap());
 		chipView = new ChipView(chip);
-		chip.attachView(chipView);
+		chip.attachView(chipView);*/
+		chipController = new ChipController(gameMap.getMap());
 		
-		root.getChildren().add(chipView.getView());
+		
+		root.getChildren().add(chipController.getImageView());
 		
 		
 		gameStage.setScene(scene);
 		gameStage.setTitle("Chip's Challenge");
 		gameStage.show();
+		
+		startGame(scene);
 	}
+	
+	private void startGame(Scene scene) {
+		scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+
+			public void handle(KeyEvent event) {
+				chipController.moveEvent(event);
+				
+	}
+			
+		});
+		
+	}
+
 	
 	public static void main(String[] args) {
 		launch(args);
