@@ -17,6 +17,7 @@ public class Road {
 	private int endX;
 	private int startY;
 	private int endY;
+	private boolean hasCarFactory;
 	private CarFactory carFactory;
 	Direction direction;
 	Collection<CrossingGate> gates;
@@ -32,6 +33,7 @@ public class Road {
 		endY = end.y;
 		roadSize = 18;
 		
+		this.hasCarFactory = buildCarFactory;
 		this.direction = direction;
 		gates = new Vector<CrossingGate>();
 		this.clearEnds = clearEnds;
@@ -47,9 +49,10 @@ public class Road {
 			carFactory = new CarFactory(direction, new Point(startX-roadSize/2,startY), gates);  // allows additional gates.  Needs fixing
 	}
 	
-	public void addCarFactory(){
+	public CarFactory addCarFactory(){
 		if (carFactory == null) // We only allow one
 			carFactory = new CarFactory(direction, new Point(startX-roadSize/2,startY), gates);
+		return carFactory;
 	}
 	
 	public CarFactory getCarFactory(){

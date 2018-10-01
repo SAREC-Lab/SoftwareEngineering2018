@@ -1,8 +1,10 @@
 package edu.nd.sarec.railwaycrossing.model.infrastructure.gate;
 
+import java.security.GeneralSecurityException;
 import java.util.Observable;
 import java.util.Observer;
 
+import edu.nd.sarec.railwaycrossing.model.infrastructure.Direction;
 import edu.nd.sarec.railwaycrossing.model.vehicles.Train;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -20,9 +22,9 @@ public class CrossingGate extends Observable implements Observer{
 	private int anchorY;
 	private int movingX;
 	private int movingY;
-	private int triggerPoint;
-	private int exitPoint;
-
+	private int rightTriggerPoint;
+	private int leftTriggerPoint;
+	
 	private IGateState gateClosed;
 	private IGateState gateOpen;
 	private IGateState gateClosing;
@@ -40,8 +42,8 @@ public class CrossingGate extends Observable implements Observer{
 		anchorY = yPosition;
 		movingX = anchorX;
 		movingY = anchorY-60;
-		triggerPoint = anchorX+250;
-		exitPoint = anchorX-250;
+		rightTriggerPoint = anchorX+250;
+		leftTriggerPoint = anchorX-250;
 		
 		// Gate elements
 		line = new Line(anchorX, anchorY,movingX,movingY);
@@ -119,11 +121,14 @@ public class CrossingGate extends Observable implements Observer{
 	public void update(Observable o, Object arg) {
 		if (o instanceof Train){
 			Train train = (Train)o;
-			if (train.getVehicleX() < exitPoint)
+			if(train.getDirection() == Direction.WEST && train.getVehicleX() < leftTriggerPoint)
 				currentGateState.leaveStation();
-			else if(train.getVehicleX() < triggerPoint){
+			if(train.getDirection() == Direction.EAST && train.getVehicleX() > rightTriggerPoint && gateName == "Gate1")
+				currentGateState.leaveStation();
+			
+			if(train.getVehicleX() < rightTriggerPoint && train.getVehicleX() > leftTriggerPoint)
 				currentGateState.approachStation();
-			} 
-		}	
+
+		}
 	}
 }
