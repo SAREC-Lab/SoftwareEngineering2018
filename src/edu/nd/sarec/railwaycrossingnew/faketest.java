@@ -1,44 +1,18 @@
-package edu.nd.sarec.railwaycrossingnew.tests.model;
+package edu.nd.sarec.railwaycrossingnew;
 
 import static org.junit.Assert.assertTrue;
 
 import java.awt.Point;
 import java.util.ArrayList;
 
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
 import edu.nd.sarec.railwaycrossingnew.model.infrastructure.Direction;
 import edu.nd.sarec.railwaycrossingnew.model.infrastructure.Road;
 import edu.nd.sarec.railwaycrossingnew.model.vehicles.Car;
 import edu.nd.sarec.railwaycrossingnew.model.vehicles.CarFactory;
 
-class CarFactoryTest {
-	
-	CarFactory carFactory;
-	Road road;
+public class faketest {
 
-	@BeforeAll
-	static void setUpBeforeClass() throws Exception {	
-	}
-
-	@AfterAll
-	static void tearDownAfterClass() throws Exception {
-	}
-
-	@BeforeEach
-	void setUp() throws Exception {
-	}
-
-	@AfterEach
-	void tearDown() throws Exception {
-	}
-
-	@Test
-	void test() {
+	public static void main(String[] args) {
 		Road road = new Road(new Point(800,0),new Point (800,1000),Direction.SOUTH,true,false);
 		road.addCarFactory("TST",false);
 		CarFactory carFactory = road.getCarFactory();
@@ -50,13 +24,20 @@ class CarFactoryTest {
 				carFactory.driveCars();
 			}
 			ArrayList<Car> cars = carFactory.getCars();
+			//System.out.println(k + ": Cars created: " + cars.size());
 			int leadCarPosition = 5000; // set to high numbers
 			for (Car car: cars) {
 				assertTrue("Car overtook its leader",car.getCarPosition().getY() < (leadCarPosition));
+				//if (car.getCarPosition().getY() > (y)) {
+				//	fail("Car over took its leader");
+				//	System.out.println("Checking car: " + car.getVehicleX());
+				//}
+				//System.out.println("Car: " + (int)car.getVehicleY() + " " + y);
 				leadCarPosition = (int)car.getCarPosition().getY();
 			}
 		}
 		assert(true);
+
 	}
 
 }

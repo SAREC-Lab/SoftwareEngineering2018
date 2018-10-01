@@ -60,19 +60,13 @@ public class Car extends Observable implements IVehicle, Observer{
 			canMove = false;
 		
 		// Second case. Car is too close too other car.
-		if (leadCarY != -1  && getDistanceToLeadCar() < 50)
+		if (leadCarY !=-1  && getDistanceToLeadCar() < 50)
 			canMove = false;
 		
 		if (canMove){
 			currentY+=speed;
-			// Refactored to separate model and view
-			//if (gui)
-			//	ivCar.setY(currentY);
-			////////////////////////////////////////
-			
 			//setChanged();
 			//notifyObservers();
-
 		}
 		setChanged();
 		notifyObservers();
