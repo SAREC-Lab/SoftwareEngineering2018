@@ -4,6 +4,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 import edu.nd.sarec.railwaycrossing.model.vehicles.Train;
+import edu.nd.sarec.railwaycrossing.model.vehicles.Train2;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
@@ -22,6 +23,8 @@ public class CrossingGate extends Observable implements Observer{
 	private int movingY;
 	private int triggerPoint;
 	private int exitPoint;
+	private int triggerPoint2;
+	private int exitPoint2;
 
 	private IGateState gateClosed;
 	private IGateState gateOpen;
@@ -42,6 +45,8 @@ public class CrossingGate extends Observable implements Observer{
 		movingY = anchorY-60;
 		triggerPoint = anchorX+250;
 		exitPoint = anchorX-250;
+		exitPoint2 = anchorX+250;
+		triggerPoint2 = anchorX-250;
 		
 		// Gate elements
 		line = new Line(anchorX, anchorY,movingX,movingY);
@@ -59,6 +64,10 @@ public class CrossingGate extends Observable implements Observer{
 	
 	public Line getGateLine(){
 		return line;
+	}
+	
+	public int getAnchorY() {
+		return anchorY;
 	}
 	
 	public void operateGate(){
@@ -124,6 +133,14 @@ public class CrossingGate extends Observable implements Observer{
 			else if(train.getVehicleX() < triggerPoint){
 				currentGateState.approachStation();
 			} 
-		}	
+		}
+		if (o instanceof Train2){
+			Train2 train2 = (Train2)o;
+			if (train2.getVehicleX() > exitPoint2)
+				currentGateState.leaveStation();
+			else if(train2.getVehicleX() > triggerPoint2){
+				currentGateState.approachStation();
+			} 
+		}
 	}
 }
