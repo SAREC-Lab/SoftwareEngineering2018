@@ -1,4 +1,4 @@
-package application;
+package hw6;
 	
 import javafx.application.Application;
 import javafx.collections.FXCollections;
@@ -8,7 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 
-import application.MapBuilder;
+import hw6.MapBuilder;
 
 public class Main extends Application {
 	ObservableList<Node> root = FXCollections.observableArrayList();
@@ -21,9 +21,9 @@ public class Main extends Application {
 		try {
 			BorderPane base = new BorderPane();
 			Scene scene = new Scene(base,625,625);
-			gameGrid = map.buildLevel(1);
+			gameGrid = map.buildLevel(2);
 			map.drawLevel(root, scale);
-			
+			System.out.println("level 2");
 			base.getChildren().addAll(root);
 			
 			primaryStage.setScene(scene);
