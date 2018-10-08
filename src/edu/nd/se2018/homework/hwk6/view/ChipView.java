@@ -18,9 +18,11 @@ public class ChipView implements Observer {
 		view = new ImageView(chipImage);
 		view.setFitHeight(20);
 		view.setFitWidth(20);
-		int[] pos = chip.getPosition();
-		view.setX(pos[0] * 20);
-		view.setY(pos[1] * 20);
+		int[] pos = new int[2];
+		pos = chip.getPosition();
+		System.out.println(pos[0]);
+		view.setX(pos[0]);
+		view.setY(pos[1]);
 	}
 	
 	public Node getView() {
@@ -30,7 +32,8 @@ public class ChipView implements Observer {
 
 	@Override
 	public void update(Observable o, Object arg) {
-		int[] pos = ((ChipModel)o).getPosition();
+		int[] pos = new int[2];
+		pos = ((ChipModel)o).getPosition();
 		view.setX(pos[0] * 20);
 		view.setY(pos[1] * 20);
 		
