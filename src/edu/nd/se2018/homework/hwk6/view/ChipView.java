@@ -37,7 +37,6 @@ public class ChipView implements Observer {
 		view.setX(pos[0] * 20);
 		view.setY(pos[1] * 20);
 		
-		
 	}
 
 }

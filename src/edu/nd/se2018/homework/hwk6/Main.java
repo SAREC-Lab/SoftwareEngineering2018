@@ -19,9 +19,9 @@ public class Main extends Application {
 	ImageView[][] tiles;
 	Image tileImage;
 	int scale = 20;
-	//ChipModel chip;
 	ChipView chipView;
 	ChipController chipController;
+	int level = 1;
 
 	@Override
 	public void start(Stage gameStage) throws Exception {
@@ -30,12 +30,11 @@ public class Main extends Application {
 		gameMap = new MapDisplay();
 		
 		gameMap.setBlocks();
+		gameMap.setLevel(level);
 		gameMap.drawMap(root.getChildren(), 20);
 
-		/*chip = new ChipModel(0, 0, gameMap.getMap());
-		chipView = new ChipView(chip);
-		chip.attachView(chipView);*/
-		chipController = new ChipController(gameMap.getMap());
+
+		chipController = new ChipController(gameMap);
 		
 		
 		root.getChildren().add(chipController.getImageView());
