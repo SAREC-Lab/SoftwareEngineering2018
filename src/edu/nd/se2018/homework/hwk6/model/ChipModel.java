@@ -10,12 +10,25 @@ public class ChipModel extends Observable {
 	int y;
 	int[] position = new int[2];
 	int[][] gameMap;
+	boolean allKeys = false;
 	
-	public ChipModel(int xPos, int yPos, int[][] map) {
+	private GameState gameRunning;
+	private GameState chipsCollected;
+	private GameState gameWon;
+	private GameState currentState;
+	
+	public ChipModel(int xPos, int yPos, int[][] map, int k) {
 		x = xPos;
 		y = yPos;
-		keys = 0;
+		this.keys = k;
 		gameMap = map;
+		
+		gameRunning = new GameRunning(this);
+		chipsCollected = new AllChips(this);
+		gameWon = new GameWon(this);
+		
+		currentState = gameRunning;
+		currentState.running();
 	}
 	
 	public int[] getPosition() {
@@ -38,11 +51,39 @@ public class ChipModel extends Observable {
 	}
 	
 	public void addKey() {
-		this.keys++;
+		this.keys--;
+		if (keys == 0) {
+			this.allKeys = true;
+			currentState.allChipsCollected();
+		}
 	}
 	
 	public void attachView(ChipView view) {
 		addObserver(view);
+	}
+	
+	public boolean allKeysCollected() {
+		return(allKeys);
+	}
+	
+	public void setGameState(GameState newState){
+		currentState = newState;
+	}
+	
+	public GameState getAllChipsState() {
+		return chipsCollected;
+	}
+	
+	public GameState getRunningState() {
+		return gameRunning;
+	}
+	
+	public GameState getGameWonState() {
+		return gameWon;
+	}
+	
+	public void levelWon() {
+		currentState.levelWon();
 	}
 
 }

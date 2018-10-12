@@ -4,7 +4,6 @@ import edu.nd.se2018.homework.hwk6.model.ChipModel;
 import edu.nd.se2018.homework.hwk6.view.ChipView;
 import edu.nd.se2018.homework.hwk6.view.MapDisplay;
 import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
 
 public class ChipController {
@@ -17,21 +16,24 @@ public class ChipController {
 	boolean update = false;
 	int x;
 	int y;
+	boolean allChips = false;
 	
 	public ChipController(MapDisplay gMap) {
 		gameMap = gMap;
 		map = gameMap.getMap();
-		chip = new ChipModel(0, 0, map);
+		keys = gameMap.getLevel()*5;
+		
+		chip = new ChipModel(0, 0, map, keys);
 		chipView = new ChipView(chip);
 		chip.attachView(chipView);
 		pos = chip.getPosition();
-		keys = gameMap.getLevel()*5;
 	}
 	
 	public void moveEvent(KeyEvent ke) {
 		
 		if (update == true) {
 			gameMap.removeKey(x, y);
+			allChips = chip.allKeysCollected();
 		}
 		
 		switch(ke.getCode()){
@@ -66,7 +68,6 @@ public class ChipController {
 			if (map[x + 1][y] != 1) {
 				x++;
 				if (map[x][y] == 2) {
-					keys--;
 					gameMap.setMap(x, y, 0);
 					chip.addKey();
 					update = true;
@@ -74,7 +75,14 @@ public class ChipController {
 				else {
 					update = false;
 				}
-			}			
+			}
+			if (allChips == true) {
+				if (map[x][y] == 4) {
+					gameMap.setMap(x, y, 0);
+					System.out.println("level won, " + x);
+					
+				}
+			}
 		}
 		this.chip.setPosition(x, y);
 	}
@@ -88,13 +96,18 @@ public class ChipController {
 			if (map[x - 1][y] != 1) {
 				x--;
 				if (map[x][y] == 2) {
-					keys--;
 					gameMap.setMap(x, y, 0);
 					chip.addKey();
 					update = true;
 				}
 				else {
 					update = false;
+				}
+			}
+			if (allChips == true) {
+				if (map[x][y] == 4) {
+					gameMap.setMap(x, y, 0);
+					System.out.println("level won");
 				}
 			}
 		}
@@ -110,13 +123,18 @@ public class ChipController {
 			if (map[x][y - 1] != 1) {
 				y--;
 				if (map[x][y] == 2) {
-					keys--;
 					gameMap.setMap(x, y, 0);
 					chip.addKey();
 					update = true;
 				}
 				else {
 					update = false;
+				}
+			}
+			if (allChips == true) {
+				if (map[x][y] == 4) {
+					gameMap.setMap(x, y, 0);
+					System.out.println("level won");
 				}
 			}
 		}
@@ -132,13 +150,18 @@ public class ChipController {
 			if (map[x][y + 1] != 1)  {
 				y++;
 				if (map[x][y] == 2 ) {
-					keys--;
 					gameMap.setMap(x, y, 0);
 					chip.addKey();
 					update = true;
 				}
 				else {
 					update = false;
+				}
+			}
+			if (allChips == true) {
+				if (map[x][y] == 4) {
+					gameMap.setMap(x, y, 0);
+					System.out.println("level won");
 				}
 			}
 		}

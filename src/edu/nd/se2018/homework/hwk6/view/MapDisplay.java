@@ -1,28 +1,19 @@
 package edu.nd.se2018.homework.hwk6.view;
-import javafx.application.Application;
 import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
+
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import javafx.stage.Stage;
-import java.util.Collection;
 import java.util.Random;
 
-import edu.nd.se2018.homework.hwk3.PirateShip;
-import edu.nd.se2018.homework.hwk3.Ship;
 
 public class MapDisplay {
 	public int[][] map = new int[25][25];
 	final int dimensions = 25;
-	ImageView tileImageView, keyImageView;
-	Image tileImage, keyImage;
+	ImageView tileImageView, keyImageView, doorImageView;
+	Image tileImage, keyImage, doorImage;
 	public int level = 1;
 	ObservableList<Node> root;
 	
@@ -31,12 +22,14 @@ public class MapDisplay {
 		for (int i = 0; i < 25; i++) {
 			int x = random.ints(0, 24).findFirst().getAsInt();
 			int y =  random.ints(0, 24).findFirst().getAsInt();
-			while ((x == 0) && (y == 0)) {
+			while (((x == 0) && (y == 0)) && ((x == 24)  && (y == 10))) {
 				x = random.ints(0, 24).findFirst().getAsInt();
 				y =  random.ints(0, 24).findFirst().getAsInt();
 			}
-			this.map[x][y]= 1;
+			this.map[x][y] = 1;
 		}
+		
+		this.map[24][10] = 4;
 	}
 	
 	public void setLevel(int l) {
@@ -46,12 +39,14 @@ public class MapDisplay {
 		for (int i = 0; i < chips; i++) {
 			int x = random.ints(0, 24).findFirst().getAsInt();
 			int y =  random.ints(0, 24).findFirst().getAsInt();
-			while ((x == 0) && (y == 0) && (map[x][y] == 1)) {
+			while ((x == 0) && (y == 0) && (map[x][y] == 1) && (map[x][y] == 4)) {
 				x = random.ints(0, 24).findFirst().getAsInt();
 				y =  random.ints(0, 24).findFirst().getAsInt();
 			}
 			this.map[x][y] = 2;
 		}
+		
+		
 	}
 	
 	public void drawMap(ObservableList<Node> r, int scale) {
@@ -67,19 +62,9 @@ public class MapDisplay {
 				tileImageView.setY(y * scale);
 				root.add(tileImageView);
 				
-				/*if (map[x][y] != 1) {
-					tileImage = new Image("/images/chip/textures/BlankTile.png", 50, 50, true, true);
-					tileImageView = new ImageView(tileImage);
-					tileImageView.setX(x * scale);
-					tileImageView.setY(y * scale);
-					root.add(tileImageView);
-					this.map[x][y] = 0;
-				}*/
-				
 				if (map[x][y] == 2) {
 					keyImage = new Image("/images/chip/textures/chipItem.png", 50, 50, true, true);
 					keyImageView = new ImageView(keyImage);
-		
 					keyImageView.setFitHeight(20);
 					keyImageView.setFitWidth(20);
 					keyImageView.setX(x * scale);
@@ -88,22 +73,25 @@ public class MapDisplay {
 					
 				}
 				
+				if (map[x][y] == 4) {
+					doorImage = new Image("/images/chip/textures/blueKeyWall.png", 50, 50, true, true);
+					doorImageView = new ImageView(doorImage);
+					doorImageView.setFitHeight(20);
+					doorImageView.setFitWidth(20);
+					doorImageView.setX(x * scale);
+					doorImageView.setY(y * scale);
+					root.add(doorImageView);
+				}
+				
 				if (map[x][y] == 1) {
 					rect.setFill(Color.BROWN);
 					root.add(rect);
 				}
 				
-				else if (map[x][y] != 2) {
+				
+				else if ((map[x][y] != 2) && (map[x][y] != 4)) {
 					this.map[x][y] = 0;
 				}
-				/*if (map[x][y] == 0) {
-					tileImage = new Image("/images/chip/textures/BlankTile.png", 50, 50, true, true);
-					tileImageView = new ImageView(tileImage);
-					tileImageView.setX(x * scale);
-					tileImageView.setY(y * scale);
-					root.add(tileImageView);
-					this.map[x][y] = 0;
-				}*/
 			}
 		}
 	}
@@ -114,21 +102,11 @@ public class MapDisplay {
 	
 	public void setMap(int x, int y, int value) {
 		this.map[x][y] = value;
-		//tileImage = new Image("/images/chip/textures/BlankTile.png", 50, 50, true, true);
-		//tileImageView = new ImageView(tileImage);
-		//root.remove(keyImage);
-		//tileImageView.setFitHeight(20);
-		//tileImageView.setFitWidth(20);
-		//tileImageView.setX(x * 20);
-		//tileImageView.setY(y * 20);
-		//root.add(tileImageView);
-		//drawMap(root, 20);
 	}
 	
 	public void removeKey(int x, int y) {
 		tileImage = new Image("/images/chip/textures/BlankTile.png", 50, 50, true, true);
 		tileImageView = new ImageView(tileImage);
-		//root.remove(keyImage);
 		tileImageView.setFitHeight(20);
 		tileImageView.setFitWidth(20);
 		tileImageView.setX(x * 20);

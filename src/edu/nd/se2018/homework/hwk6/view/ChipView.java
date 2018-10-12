@@ -20,7 +20,6 @@ public class ChipView implements Observer {
 		view.setFitWidth(20);
 		int[] pos = new int[2];
 		pos = chip.getPosition();
-		System.out.println(pos[0]);
 		view.setX(pos[0]);
 		view.setY(pos[1]);
 	}
