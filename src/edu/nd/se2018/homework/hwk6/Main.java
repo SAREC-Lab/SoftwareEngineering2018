@@ -1,15 +1,17 @@
 package edu.nd.se2018.homework.hwk6;
+import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.Node;
 import javafx.stage.Stage;
 import edu.nd.se2018.homework.hwk6.controller.ChipController;
-import edu.nd.se2018.homework.hwk6.model.ChipModel;
+import edu.nd.se2018.homework.hwk6.controller.MonsterController;
+import edu.nd.se2018.homework.hwk6.controller.MoveVertical;
 import edu.nd.se2018.homework.hwk6.view.*;
 
 public class Main extends Application {
@@ -21,6 +23,7 @@ public class Main extends Application {
 	int scale = 20;
 	ChipView chipView;
 	ChipController chipController;
+	MonsterController monsterController;
 	int level = 1;
 
 	@Override
@@ -35,16 +38,34 @@ public class Main extends Application {
 
 
 		chipController = new ChipController(gameMap);
+		monsterController = new MonsterController(gameMap, new MoveVertical());
 		
 		
 		root.getChildren().add(chipController.getImageView());
-		
+		root.getChildren().add(monsterController.getImageView());
 		
 		gameStage.setScene(scene);
 		gameStage.setTitle("Chip's Challenge");
 		gameStage.show();
 		
+		 gameStage.addEventHandler(KeyEvent.KEY_RELEASED, (KeyEvent event) -> {
+		        if (event.getCode() == KeyCode.ESCAPE) {
+		            gameStage.close();
+		        }
+		    });
+		
 		startGame(scene);
+		
+		new AnimationTimer(){
+			//@Override
+			int count = 0;
+			public void handle(long now) {
+				if (count % 10 == 0) {
+					monsterController.runStrategy();
+				}
+				count++;
+			}
+		}.start();
 	}
 	
 	private void startGame(Scene scene) {
@@ -52,11 +73,8 @@ public class Main extends Application {
 
 			public void handle(KeyEvent event) {
 				chipController.moveEvent(event);
-				
 			}
-			
 		});
-		
 	}
 
 	

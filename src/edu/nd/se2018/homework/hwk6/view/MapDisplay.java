@@ -16,13 +16,14 @@ public class MapDisplay {
 	Image tileImage, keyImage, doorImage;
 	public int level = 1;
 	ObservableList<Node> root;
+	int scale;
 	
 	public void setBlocks( ) {
 		Random random = new Random();
 		for (int i = 0; i < 25; i++) {
 			int x = random.ints(0, 24).findFirst().getAsInt();
 			int y =  random.ints(0, 24).findFirst().getAsInt();
-			while (((x == 0) && (y == 0)) && ((x == 24)  && (y == 10))) {
+			while (((x == 0) && (y == 0)) || ((x == 24)  && (y == 10)) || (x == 20)) {
 				x = random.ints(0, 24).findFirst().getAsInt();
 				y =  random.ints(0, 24).findFirst().getAsInt();
 			}
@@ -49,8 +50,9 @@ public class MapDisplay {
 		
 	}
 	
-	public void drawMap(ObservableList<Node> r, int scale) {
+	public void drawMap(ObservableList<Node> r, int s) {
 		root = r;
+		scale = s;
 		for (int x = 0; x < dimensions; x++) {
 			for (int y = 0; y < dimensions; y++) {
 				Rectangle rect = new Rectangle(x*scale, y*scale, scale, scale);
@@ -116,6 +118,19 @@ public class MapDisplay {
 	
 	public int getLevel() {
 		return(this.level);
+	}
+	
+	public void reset() {
+		this.level++;
+		for (int i = 0; i < 25; i++) {
+			for (int j = 0; j < 25; j++) {
+				setMap(i, j, 0);
+			}
+		}
+		
+		setBlocks();
+		setLevel(level);
+		drawMap(root, scale);
 	}
 	
 }

@@ -79,7 +79,7 @@ public class ChipController {
 			if (allChips == true) {
 				if (map[x][y] == 4) {
 					gameMap.setMap(x, y, 0);
-					System.out.println("level won, " + x);
+					levelWon();
 					
 				}
 			}
@@ -107,7 +107,7 @@ public class ChipController {
 			if (allChips == true) {
 				if (map[x][y] == 4) {
 					gameMap.setMap(x, y, 0);
-					System.out.println("level won");
+					levelWon();;
 				}
 			}
 		}
@@ -134,7 +134,7 @@ public class ChipController {
 			if (allChips == true) {
 				if (map[x][y] == 4) {
 					gameMap.setMap(x, y, 0);
-					System.out.println("level won");
+					levelWon();
 				}
 			}
 		}
@@ -161,11 +161,23 @@ public class ChipController {
 			if (allChips == true) {
 				if (map[x][y] == 4) {
 					gameMap.setMap(x, y, 0);
-					System.out.println("level won");
+					levelWon();
+	
 				}
 			}
 		}
 		this.chip.setPosition(x, y);
+	}
+	
+	public void levelWon() {
+		System.out.println("level won");
+		gameMap.reset();
+		//chip.setPosition(0, 0);
+		//chip = new ChipModel(0, 0, map, keys);
+		chipView = new ChipView(chip);
+		chip.attachView(chipView);
+		chip.setPosition(0, 0);
+		pos = chip.getPosition();
 	}
 
 }
