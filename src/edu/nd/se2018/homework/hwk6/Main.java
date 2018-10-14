@@ -75,6 +75,13 @@ public class Main extends Application {
 					monsterController2.runStrategy();
 				}
 				count++;
+				
+				if (gameMap.getStatus() == true) {
+					root.getChildren().add(chipController.getImageView());
+					root.getChildren().add(monsterController1.getImageView());
+					root.getChildren().add(monsterController2.getImageView());
+					gameMap.resetStatus();
+				}
 			}
 		}.start();
 	}

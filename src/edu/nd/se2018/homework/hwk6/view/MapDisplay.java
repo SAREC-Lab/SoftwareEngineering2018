@@ -17,13 +17,14 @@ public class MapDisplay {
 	public int level = 1;
 	ObservableList<Node> root;
 	int scale;
+	boolean newLevel = false;
 	
 	public void setBlocks( ) {
 		Random random = new Random();
 		for (int i = 0; i < 25; i++) {
 			int x = random.ints(0, 24).findFirst().getAsInt();
 			int y =  random.ints(0, 24).findFirst().getAsInt();
-			while (((x == 0) && (y == 0)) || ((x == 24)  && (y == 10)) || (x == 20)) {
+			while (((x == 0) && (y == 0)) || ((x == 24)  && (y == 10)) || (x == 20) || (y == 15)) {
 				x = random.ints(0, 24).findFirst().getAsInt();
 				y =  random.ints(0, 24).findFirst().getAsInt();
 			}
@@ -122,6 +123,7 @@ public class MapDisplay {
 	
 	public void reset() {
 		this.level++;
+		root.clear();
 		for (int i = 0; i < 25; i++) {
 			for (int j = 0; j < 25; j++) {
 				setMap(i, j, 0);
@@ -131,6 +133,16 @@ public class MapDisplay {
 		setBlocks();
 		setLevel(level);
 		drawMap(root, scale);
+		
+		newLevel = true;
+	}
+	
+	public boolean getStatus() {
+		return newLevel;
+	}
+	
+	public void resetStatus() {
+		newLevel = false;
 	}
 	
 }
