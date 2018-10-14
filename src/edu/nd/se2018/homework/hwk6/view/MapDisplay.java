@@ -108,12 +108,13 @@ public class MapDisplay {
 	}
 	
 	public void removeKey(int x, int y) {
+		//root.remove(keyImageView);
 		tileImage = new Image("/images/chip/textures/BlankTile.png", 50, 50, true, true);
 		tileImageView = new ImageView(tileImage);
 		tileImageView.setFitHeight(20);
 		tileImageView.setFitWidth(20);
-		tileImageView.setX(x * 20);
-		tileImageView.setY(y * 20);
+		tileImageView.setX(x * scale);
+		tileImageView.setY(y * scale);
 		root.add(tileImageView);
 	}
 	
