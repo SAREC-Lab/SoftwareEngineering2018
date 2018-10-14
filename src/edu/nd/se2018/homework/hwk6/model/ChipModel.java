@@ -1,16 +1,18 @@
 package edu.nd.se2018.homework.hwk6.model;
 
 import java.util.Observable;
+import java.util.Observer;
 
 import edu.nd.se2018.homework.hwk6.view.ChipView;
 
-public class ChipModel extends Observable {
+public class ChipModel extends Observable implements Observer {
 	int keys;
 	int x;
 	int y;
 	int[] position = new int[2];
 	int[][] gameMap;
 	boolean allKeys = false;
+	int [] monsterPos = new int[2];
 	
 	private GameState gameRunning;
 	private GameState chipsCollected;
@@ -84,6 +86,16 @@ public class ChipModel extends Observable {
 	
 	public void levelWon() {
 		currentState.levelWon();
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		monsterPos = ((MonsterModel)o).getPosition();
+		if ((monsterPos[0] == x) && (monsterPos[1] == y)) {
+			setPosition(0,0);
+		}
+		
+		
 	}
 
 }

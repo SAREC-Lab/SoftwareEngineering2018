@@ -59,6 +59,10 @@ public class ChipController {
 		return chipView.view;
 	}
 	
+	public ChipModel getModel() {
+		return chip;
+	}
+	
 	public void moveRight() {
 		int[] pos = new int[2];
 		pos = chip.getPosition();

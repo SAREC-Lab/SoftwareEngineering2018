@@ -16,11 +16,11 @@ public class MonsterController {
 	//int direction = 1;
 	MoveStrategy strategy;
 	
-	public MonsterController(MapDisplay gMap, MoveStrategy s) {
+	public MonsterController(MapDisplay gMap, MoveStrategy s, int x, int y) {
 		gameMap = gMap;
 		map = gameMap.getMap();
 		
-		monster = new MonsterModel(20, 10);
+		monster = new MonsterModel(x, y);
 		monsterView = new MonsterView(monster);
 		monster.attachView(monsterView);
 		pos = monster.getPosition();
@@ -32,20 +32,9 @@ public class MonsterController {
 		return monsterView.view;
 	}
 	
-	/*public void move() {
-		pos = monster.getPosition();
-		x = pos[0];
-		y = pos[1];
-		if ((y < 15) && (y > 5)) {
-			y = y + direction;
-		}
-		else {
-			direction = direction * -1;
-			y = y + direction;
-		}
-		
-		monster.setPosition(x, y);
-	}*/
+	public MonsterModel getModel() {
+		return monster;
+	}
 	
 	public void runStrategy() {
 		pos = monster.getPosition();

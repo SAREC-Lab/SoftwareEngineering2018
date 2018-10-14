@@ -11,7 +11,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import edu.nd.se2018.homework.hwk6.controller.ChipController;
 import edu.nd.se2018.homework.hwk6.controller.MonsterController;
+import edu.nd.se2018.homework.hwk6.controller.MoveHorizontal;
 import edu.nd.se2018.homework.hwk6.controller.MoveVertical;
+import edu.nd.se2018.homework.hwk6.model.MonsterModel;
 import edu.nd.se2018.homework.hwk6.view.*;
 
 public class Main extends Application {
@@ -23,7 +25,8 @@ public class Main extends Application {
 	int scale = 20;
 	ChipView chipView;
 	ChipController chipController;
-	MonsterController monsterController;
+	MonsterController monsterController1, monsterController2;
+	MonsterModel monster1, monster2;
 	int level = 1;
 
 	@Override
@@ -38,11 +41,18 @@ public class Main extends Application {
 
 
 		chipController = new ChipController(gameMap);
-		monsterController = new MonsterController(gameMap, new MoveVertical());
+		monsterController1 = new MonsterController(gameMap, new MoveVertical(), 20, 10);
+		monsterController2 = new MonsterController(gameMap, new MoveHorizontal(), 10, 15);
 		
+		monster1 = monsterController1.getModel();
+		monster1.addObserver(chipController.getModel());
+		
+		monster2 = monsterController2.getModel();
+		monster2.addObserver(chipController.getModel());
 		
 		root.getChildren().add(chipController.getImageView());
-		root.getChildren().add(monsterController.getImageView());
+		root.getChildren().add(monsterController1.getImageView());
+		root.getChildren().add(monsterController2.getImageView());
 		
 		gameStage.setScene(scene);
 		gameStage.setTitle("Chip's Challenge");
@@ -61,7 +71,8 @@ public class Main extends Application {
 			int count = 0;
 			public void handle(long now) {
 				if (count % 10 == 0) {
-					monsterController.runStrategy();
+					monsterController1.runStrategy();
+					monsterController2.runStrategy();
 				}
 				count++;
 			}
@@ -76,8 +87,7 @@ public class Main extends Application {
 			}
 		});
 	}
-
-	
+		
 	public static void main(String[] args) {
 		launch(args);
 
