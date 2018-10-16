@@ -13,7 +13,6 @@ public class MonsterController {
 	public int [][] map;
 	int x;
 	int y;
-	//int direction = 1;
 	MoveStrategy strategy;
 	
 	public MonsterController(MapDisplay gMap, MoveStrategy s, int x, int y) {

@@ -22,7 +22,7 @@ public class GameWon implements GameState {
 
 	@Override
 	public void running() {
-		// TODO Auto-generated method stub
+		chip.setGameState(chip.getRunningState());
 		
 	}
 
