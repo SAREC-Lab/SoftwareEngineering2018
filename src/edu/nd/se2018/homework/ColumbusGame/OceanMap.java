@@ -13,6 +13,7 @@ public class OceanMap {
 	ImageView islandImageView;
 	Image ocean;
 	ImageView oceanImageView;
+	
 	public void drawMap(ObservableList<Node> root, int scale) {
 		Image ocean = new Image("images\\oceanSprite.png",scale, scale, false, true);
 		for(int x = 0; x < dimensions; x++) {
