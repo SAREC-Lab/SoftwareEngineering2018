@@ -1,10 +1,11 @@
-package raceTests;
+package edu.nd.se2018.homework.hwk2.src.racetest;
 import org.junit.Test;
 
-import hwk2.EarlySprintStrategy;
-import hwk2.Horse;
-import hwk2.SlowStartStrategy;
-import hwk2.SteadyRunStrategy;
+import edu.nd.se2018.homework.hwk2.src.homework2.EarlySprintStrategy;
+import edu.nd.se2018.homework.hwk2.src.homework2.Horse;
+import edu.nd.se2018.homework.hwk2.src.homework2.SlowStartStrategy;
+import edu.nd.se2018.homework.hwk2.src.homework2.SteadyRunStrategy;
+
 
 public class RaceTest2 {
 	@Test

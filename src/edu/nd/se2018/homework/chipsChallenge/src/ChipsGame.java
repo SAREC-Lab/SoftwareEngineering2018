@@ -15,7 +15,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class ChipsGame extends Application {
-	
+	// locals
 	Pane root;
 	Scene scene;
 	ChipMap chipMap;

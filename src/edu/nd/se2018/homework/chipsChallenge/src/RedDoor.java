@@ -23,7 +23,7 @@ public class RedDoor implements Door{
 		imageView.setY(location.y*scale);
 		map.chipsGrid[location.x][location.y] = 1;
 	}
-
+	// test
 	@Override
 	public Point getDoorLocation() {
 		// TODO Auto-generated method stub

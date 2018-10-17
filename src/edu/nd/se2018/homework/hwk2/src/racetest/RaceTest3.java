@@ -1,4 +1,4 @@
-package raceTests;
+package edu.nd.se2018.homework.hwk2.src.racetest;
 import org.junit.Test;
 
 public class RaceTest3 {

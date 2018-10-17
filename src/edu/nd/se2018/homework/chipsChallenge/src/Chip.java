@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Observable;
 
 public class Chip extends Observable{
-
+	// locals
 	Point location = new Point();
 	ChipMap map;
 	List<Key> bag;

@@ -8,6 +8,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 public class ChipMap {
+	// locals
 	int[][] chipsGrid = new int[25][25];
 	final int dimensions = 25;
 	ImageView tileImageView;

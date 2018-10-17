@@ -9,7 +9,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class Bug implements Observer{
-	
+	// locals
 	Point bugLocation = new Point();
 	Point chipLocation;
 	final int scalingFactor = 20;

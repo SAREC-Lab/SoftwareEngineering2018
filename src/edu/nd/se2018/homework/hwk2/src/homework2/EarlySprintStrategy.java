@@ -1,4 +1,4 @@
-package hwk2;
+package edu.nd.se2018.homework.hwk2.src.homework2;
 
 public class EarlySprintStrategy extends Horse{
 	

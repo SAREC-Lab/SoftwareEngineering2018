@@ -1,5 +1,9 @@
-package raceTests;
-import hwk2.*;
+package edu.nd.se2018.homework.hwk2.src.racetest;
+
+import edu.nd.se2018.homework.hwk2.src.homework2.EarlySprintStrategy;
+import edu.nd.se2018.homework.hwk2.src.homework2.Horse;
+import edu.nd.se2018.homework.hwk2.src.homework2.SlowStartStrategy;
+import edu.nd.se2018.homework.hwk2.src.homework2.SteadyRunStrategy;
 
 public class Race {
 	public Horse[] arr = new Horse[5];

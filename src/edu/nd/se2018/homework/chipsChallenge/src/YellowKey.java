@@ -6,7 +6,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class YellowKey implements Key{
-	
+	// locals
 	Point location = new Point();
 	ChipMap map;
 	ImageView imageView;
