@@ -48,13 +48,13 @@ public class MapBuilder {
 		greenKeyBlock _keyBlock = new greenKeyBlock();
 		for (int x = 0; x < dimensions; x++) {
 			for (int y = 0; y < dimensions;y++) {
-				ImageView block = block = new ImageView(_walkable.getImageView());
+				ImageView block = block = new ImageView(_walkable.getImageView()); // says don't need but throws error if not included
 				if(gameGrid[x][y]==1) {
-						System.out.println("This is a 1");
+						//System.out.println("This is a 1");
 						// borders 
 						block = new ImageView(_wall.getImageView());
 				}else if(gameGrid[x][y] == 2){
-					System.out.println("This is a 2");
+					//System.out.println("This is a 2");
 						// key
 						block = new ImageView(_key.getImageView());
 				}else if(gameGrid[x][y] == 3){
