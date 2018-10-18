@@ -4,6 +4,8 @@ import java.util.Observable;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.scene.input.*;
@@ -27,7 +29,6 @@ public class chip extends Observable{
 		_chip.setX(xLocal);
 		_chip.setY(yLocal);
 		base.getChildren().add(_chip);
-		//grid[brickX][brickY] = 5;
 	}
 	
 	public int getX() {
@@ -41,6 +42,7 @@ public class chip extends Observable{
 	}
 	public void playChips(AnchorPane base, int [][] grid, Scene scene,int level, Stage stage) {
 		int previosLevel = level;
+		int flag = 0;
 		Image chipRight = new Image("file:/Users/connorgreen/git/SoftwareEngineering2018/chip/textures/chipRight.png",25, 25, true, true);
 		Image chipLeft = new Image("file:/Users/connorgreen/git/SoftwareEngineering2018/chip/textures/chipLeft.png",25, 25, true, true);
 		Image chipUp = new Image("file:/Users/connorgreen/git/SoftwareEngineering2018/chip/textures/chipUp.png",25, 25, true, true);
@@ -54,51 +56,68 @@ public class chip extends Observable{
 	            	setChanged(); // update the alien class
 	    			notifyObservers();
 	    			if(newLevel != previosLevel) {
-	    	    		levelChange(stage,base);
+	    	    		levelChange(stage,base,newLevel);
 	    	    	}
 	            	break;
 	            case RIGHT: 
 	            	_chip.setImage(chipRight);
 	            	newLevel= goRight(grid,level,_chip);
-	            	setChanged(); // update the pirate class
+	            	setChanged(); // update  class
 	    			notifyObservers();
 	    			if(newLevel != previosLevel) {
-	    	    		levelChange(stage,base);
+	    	    		levelChange(stage,base,newLevel);
 	    	    	}
 	            	break;
 	            case DOWN:  
 	            	_chip.setImage(chipDown);
 	            	newLevel= goDown(grid,level,_chip);
-	            	setChanged(); // update the pirate class
+	            	setChanged(); // update  class
 	    			notifyObservers();
 	    			if(newLevel != previosLevel) {
-	    	    		levelChange(stage,base);
+	    	    		levelChange(stage,base,newLevel);
 	    	    	}
 	            	break;
 	            case LEFT:  
 	            	_chip.setImage(chipLeft);
 	            	newLevel = goLeft(grid,level,_chip);
-	            	setChanged(); // update the pirate class
+	            	setChanged(); // update  class
 	    			notifyObservers();
 	    			if(newLevel != previosLevel) {
-	    	    		levelChange(stage,base);
+	    	    		levelChange(stage,base,newLevel);
 	    	    	}
 	            	break;
 	            case ESCAPE:
+	            	
 	            	stage.close();
 	            default:
+	            	
 	            	break;
 	          }
 	        }
 	    });
+	    
 	}
 	
-	public void levelChange(Stage stage, AnchorPane base) {
+	public void levelChange(Stage stage, AnchorPane base,int level) {
 		Text text = new Text();      
-	      text.setText("You have reached the portal congrats!"); 
-	      System.out.println("You have reached the portal congrats!");
-	      text.setX(50); 
-	      text.setY(50);
+		text.setText("You have reached the portal congrats!"); 
+	    System.out.println("You have reached the portal congrats!");
+	    text.setX(100); 
+	    text.setY(300);
+	    text.setFont(Font.font ("Verdana", 20));
+	    text.setFill(Color.RED);
+	    base.getChildren().add(text);
+	    if(level == 2) {
+	    	// here we will want to switch to the second level of the game
+	    	
+	    }
+	    if(level == 3) {
+			System.out.print("you won!");
+			stage.close();
+			
+		}
+	   
+	    
 	}
 	
 	public int goUp(int [][] grid, int level,ImageView chip) {
@@ -149,13 +168,12 @@ public class chip extends Observable{
 			return false;
 		}
 	}
-	// FIX THIS ONE
 	public int checkWall(int[][] grid, int x, int y,int level) {
 		if(grid[x][y] == 2) {
 			keys = keys + 1;
 			grid[x][y] = 0;
 		} else if(grid[x][y] == 3) {
-			level = 2;
+			level = level+1;
 			System.out.println("Winner");
 		}else if((grid[x][y] == 4) && keys >= 1) {
 			grid[x][y] = 0;

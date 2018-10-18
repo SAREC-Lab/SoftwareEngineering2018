@@ -36,8 +36,8 @@ public class alien implements  Observer{
 		      Text text = new Text();      
 		      text.setText("The Alien Has Caught you, sorry you lose"); 
 		      System.out.println("The Alien Has Caught you, sorry you lose");
-		      text.setX(50); 
-		      text.setY(50); 
+		      text.setX(300); 
+		      text.setY(300); 
 		}else { // the alien has too easy of a time catching chip if I don't lower the size
 			if (xLocal - chipX < 0) {
 				if(resCheck(xLocal+5,yLocal)) {

@@ -34,12 +34,6 @@ public class Main extends Application {
 			_chip1.addObserver(_alien);
 			//System.out.print(gameGrid[20][20]);
 			_chip1.playChips(base, gameGrid, scene,level,primaryStage);
-		
-
-			
-			
-			
-			
 			
 		} catch(Exception e) {
 			e.printStackTrace();
