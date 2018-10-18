@@ -2,12 +2,17 @@ package hw6;
 
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
+
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+
+import hw6.blocks.*;
 
 public class MapBuilder {
 	int[][] gameGrid = new int[25][25];
 	final int dimensions = 25;
+	ImageView block;
 	
 	public int[][] buildLevel( int level) {
 		if(level == 1) {
@@ -24,9 +29,7 @@ public class MapBuilder {
 		 for(int i = 0; i < 25 ; i++) {
 			 gameGrid[0][i] = gameGrid[i][24] = gameGrid[i][0] = gameGrid[24][i] = 1; // build in border walls
 		 }
-		 gameGrid[10][12] = 2; // place a key
 		 gameGrid[20][20] = 3; // place a door to the next level
-		 gameGrid[15][10] = 5; // place chip
 	}
 	private  void buildlevel2(){
 		for(int i = 0; i < 25 ; i++) {
@@ -35,29 +38,37 @@ public class MapBuilder {
 		 gameGrid[23][10] = 2; // place a key
 		 gameGrid[2][2] = 3; // place a door to the next level
 		 gameGrid[4][2] = 4; // locked until you have the key
-		 gameGrid[15][10] = 5; // place chip
 		 gameGrid[4][1] = gameGrid[4][3] = gameGrid[3][3] = gameGrid[2][3] = gameGrid[1][3]  = 1;
 	}
-	public void drawLevel(ObservableList<Node> root, int scale) {
+	public void drawLevel(ObservableList<Node> root, int scale, AnchorPane base) {
+		wall _wall = new wall();
+		portal _portal = new portal();
+		walkable _walkable = new walkable();
+		key _key = new key();
+		greenKeyBlock _keyBlock = new greenKeyBlock();
 		for (int x = 0; x < dimensions; x++) {
 			for (int y = 0; y < dimensions;y++) {
-				Rectangle rect = new Rectangle(y*scale, x*scale,scale,scale);
-				rect.setStroke(Color.BLACK);
+				ImageView block = block = new ImageView(_walkable.getImageView());
 				if(gameGrid[x][y]==1) {
-					rect.setFill(Color.BLACK);
+						System.out.println("This is a 1");
+						// borders 
+						block = new ImageView(_wall.getImageView());
 				}else if(gameGrid[x][y] == 2){
-					rect.setFill(Color.GOLD);
+					System.out.println("This is a 2");
+						// key
+						block = new ImageView(_key.getImageView());
 				}else if(gameGrid[x][y] == 3){
-					rect.setFill(Color.BLUE);
+						block = new ImageView(_portal.getImageView());
+						//portal placement
 				}else if(gameGrid[x][y] == 4){
-					rect.setFill(Color.RED);
-				}else if(gameGrid[x][y] == 5){
-					rect.setFill(Color.GREEN);
+						block = new ImageView(_keyBlock.getImageView());	
 				}else {
-					rect.setFill(Color.GREY);
+					//rect.setFill(Color.GREY);
 					gameGrid[x][y] = 0;
 				}
-				root.add(rect);
+			block.setX(scale*x);
+			block.setY(scale*y);;
+			base.getChildren().add(block);
 			}
 		}
 	}

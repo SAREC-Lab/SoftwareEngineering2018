@@ -6,7 +6,7 @@ import javafx.collections.ObservableList;
 import javafx.stage.Stage;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.AnchorPane;
 
 import hw6.MapBuilder;
 
@@ -19,16 +19,17 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			BorderPane base = new BorderPane();
+			AnchorPane base = new AnchorPane();
 			Scene scene = new Scene(base,625,625);
-			gameGrid = map.buildLevel(2);
-			map.drawLevel(root, scale);
+			gameGrid = map.buildLevel(1);
+			map.drawLevel(root, scale,base);
 			System.out.println("level 2");
-			base.getChildren().addAll(root);
+			//base.getChildren().addAll(root);
 			
 			primaryStage.setScene(scene);
 			primaryStage.show();
-			
+			// build chip into the map
+			chip _chip = new chip();
 			
 			
 			
