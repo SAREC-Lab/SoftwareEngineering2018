@@ -1,8 +1,5 @@
 package edu.nd.se2018.homework.chipsChallenge;
 
-import java.util.Observable;
-import java.util.Observer;
-
 import javafx.scene.image.ImageView;
 
 public class SecondLevel extends Level{

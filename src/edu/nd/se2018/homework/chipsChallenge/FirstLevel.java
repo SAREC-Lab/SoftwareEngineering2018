@@ -41,10 +41,6 @@ public class FirstLevel extends Level{
 		for(int i=0; i<Level.NUM_TILE_ROWS; i++){
 			for(int j=0; j<Level.NUM_TILE_COLS; j++){
 				tiles[i][j] = new ImageView(TileInfo.getTileImage(tileEnums[i][j]));
-				//if(i==0 || j==0 || i==Level.NUM_TILE_ROWS-1 || j==Level.NUM_TILE_COLS-1)
-				//	tiles[i][j] = new ImageView(TileInfo.getTileImage(TileInfo.WALL_TILE));
-				//else
-				//	tiles[i][j] = new ImageView(TileInfo.getTileImage(TileInfo.BLANK_TILE));
 			}
 		}
 		updateLevelPosition();

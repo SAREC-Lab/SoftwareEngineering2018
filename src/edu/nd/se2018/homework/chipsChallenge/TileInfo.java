@@ -11,6 +11,7 @@ public abstract class TileInfo {
 	public static int KEY_TILE = 3;
 	public static int KEY_WALL_TILE = 4;
 
+	// initializing only one (static) image object for each tile image
 	public static Image blankTileImage = new Image("images/chip/BlankTile.png", Level.TILE_WIDTH, Level.TILE_HEIGHT, true, true);
 	public static Image wallTileImage = new Image("images/chip/wallTile.png", Level.TILE_WIDTH, Level.TILE_HEIGHT, true, true);
 	public static Image portalTileImage = new Image("images/chip/portal.png", Level.TILE_WIDTH, Level.TILE_HEIGHT, true, true);

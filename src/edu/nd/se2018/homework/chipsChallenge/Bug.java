@@ -6,8 +6,6 @@ import java.util.Observer;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
 
 public class Bug extends Observable implements Observer{
 

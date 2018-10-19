@@ -27,8 +27,6 @@ public class Main extends Application{
 
 	Chip chip;
 	Level currentLevel;
-	//Level firstLevel;
-	//Level secondLevel;
 	
 	AnimationTimer animationTimer;
 	

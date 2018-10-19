@@ -91,8 +91,6 @@ public class Chip extends Observable implements Observer {
 		chipImageView.setImage(chipDownImg);
 	}
 	
-	// TODO add vars for position in array not just drawing x&y
-	
 	private void moveChip(int dx, int dy){
 		x += dx;
 		y += dy;
