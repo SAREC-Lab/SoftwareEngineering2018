@@ -2,7 +2,7 @@ package edu.nd.se2018.homework.chipsChallenge;
 
 public interface BugMovement {
 	
-	public int getNewX(int x, boolean hittingWall);
-	public int getNewY(int y, boolean hittingWall);
+	public int getNewX(int currentX, int currentY, Level level);
+	public int getNewY(int currentX, int currentY, Level level);
 
 }
