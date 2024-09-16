@@ -1,0 +1,16 @@
+Design Reflection
+
+As I approached this homework, I began by thinking about the fact that within each race, there must be many horses enrolled. 
+So, for each race, I had there be a winner string (to be updated after the race) and an ArrayList of horses, each of the Horse class.
+
+Naturally, I had to create the Horse class next. Each horse has several attributes such as name, number, max speed, as well as methods
+to get and set each of these attributes. Additionally, the Horse class has a behavioural attribute. However, some horses race differently,
+so I had to make a RaceBehavior class, with many different children classes that inherited its basic function, update, which would update
+horse's position each loop of the race.
+
+Starting the program from here is simple. You simply enroll horses while simultaneously describing their attributes (including their race
+behavior), and then you start the race (by calling the startRace method on your instantiation of Race). The update functions will update
+each horses position throughout the race, and the winner is the first to go more than 10 miles. In the event where multiple horses finish
+the race in the same loop, the horse that has traveled the farthest at the end of the loop is declared the winner.
+
+- Cameron Pickard
