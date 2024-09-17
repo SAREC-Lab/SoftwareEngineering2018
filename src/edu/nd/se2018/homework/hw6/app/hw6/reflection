@@ -1,0 +1,52 @@
+Over the course of the project I was able to realize how valuable a well thought
+out design can be when building a larger system.  When I started my design
+I did not anticipate the challenges that present themselves when you have to
+make edits that originate very low in the structure but manifest on a high level
+(aka the game board).  I found that a I wanted to do as much creating of the
+chip and the block structures as low to their class as possible.  This
+unfortunately meant that a lot of the functions had several arguments that
+were passed in layer over layer. This is an area where I would like to focus
+time in improvement and hopefully find a better solution more akin to passing
+by reference in C++.
+
+Major Design changes had to be that originally the alien was moving too fast
+and this didn't really make the game very fun, so now it moves slower but is not
+limited to moving square to square. Also I was happy to see that I could
+compartmentalize most of the moving behavior of chip into condensed functions
+instead of having large about of code in each of the case statements there were
+handled else where. Also the use of a factory model when designing the blocks
+to be pushed into the screen was also very helpful and it was interesting to
+see in action that if a block ever needed to be added, placed differently, or
+changed it could be done so very easily.
+
+If I could start from scratch I thing it would have been interesting to have the
+map move around chip, and would have allowed for more dynamic reallocation of the
+map as he went along.  Also given my design shortcomings (transition from level
+1 to level 2 and deleting squares) less on the design of maps and end screens
+individual and gone from a state machine approach then built out the states.
+
+Pattern name: Observer
+Class Name Role in pattern
+Observer: Alien
+Observable: Chip
+Purpose: Chip as he is going to grab keys or make it to the portal must avoid
+the alien and his drone as a challenge to the game
+
+Pattern name: Factory
+Class Name Role in pattern
+Factory: MapBuilder
+Building: Blocks folder
+Purpose: My goal going into the designing the levels was that I could pass a
+grid of information between the different classes so that they could easily
+have information about what is around them. To then build the image from this
+I used the factory model to assemble the image from a collection of block class
+types.
+
+Pattern name: State
+Class Name Role in pattern
+Controller: moveChip Method
+States: movements of chip
+Purpose: I used the moveChip function to control the state of chip, then using
+a case statement to encapsulate that behavior. It would have been possible to
+use a separate interface class, however it seemed like unneeded overhead to the
+functionality of chip.

@@ -1,0 +1,15 @@
+Strategy and Reflection
+
+The strategy is set in horse, and is called through the setstrategy function that is present there.
+This allowed for the set up to be cleaner in race where it was taking the input and you could create
+the horse object simply. When setting that it is really just assigning it based on a case structure that
+then runs in the horse class the "run" function that calls "moveForward" this is what is being implemented
+in slowStarter.java, steadyRunner.java, and EarlySprinter.java. Move forward returns the jump that they make
+in the unit of time.  This seemed like a strait forward way to represent continuous time in a discrete 
+manner.  This representation can also be better tuned easily by changing how many units represent 10 miles
+and the size of the jumps or the speed that is used.  This design decision made it so that the horse run function
+out pass out to race, where using a map I was able to associate how much ground had been covered.
+
+Reflecting on this design I think I was happy with the build up into horses. I think building out a better version
+of the hashmap that could have been used to sort or clean up the race in the event of ties. It would have helped 
+streamline my implementation and kept race easier to read.   

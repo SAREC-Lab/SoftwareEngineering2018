@@ -1,0 +1,18 @@
+To approach the design process, I tried to figure out how all the different classes related to eachother.
+The first question I was able to address by tweaking the code that was already present. Adding the second
+train and track was easier given the fact that those were done in simulation. The cars were already
+set up to work within the gates present, so I was able to link the gate to the second train by adding it 
+to the observer present.  Initally it would respond incorrectly to a new train coming in, so I created 
+some logic that checked with both trains before opening the gate to let cars through.Ideally I think 
+creating a method to automate this process would be ideal going foward, however it was addressed with 
+incrimental design. 
+
+Moving to the second task, I origionally tried to approach it in the same way. When that didn't work, I
+believe since the roads/car factories are independent. I tried to create an intersection class, that I could
+then assign to the spot that the cars traveling east -> west would have to interact with. I wasn't able to
+intergrate this into the design. I wanted to affect car.move(), which was called in car factory, but wasn't
+able to pass the cars on the road into that. To address the movement, however, I was able to get the cars to
+move over to the other side, using the logic in car move based on what side of the track that was on. These
+changes, didn't impact the overall design, and were built into the classes present. I was hoping to use the 
+intersection class to build on that functionality, and set it up on both sides you could easily send cars both
+ways and I think would be the major goal going foward.
