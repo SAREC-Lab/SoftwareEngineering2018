@@ -37,8 +37,15 @@ public class Train extends Observable implements IVehicle{
 		return currentY;
 	}
 	
-	public void move(){
+	public void moveWest(){
 		currentX-=2;
+		imgView.setX(currentX);
+		setChanged();
+		notifyObservers();
+	}
+	
+	public void moveEast(){
+		currentX+=2;
 		imgView.setX(currentX);
 		setChanged();
 		notifyObservers();
@@ -58,5 +65,11 @@ public class Train extends Observable implements IVehicle{
 	//@Override
 	public Node getImageView() {
 		return imgView;
+	}
+
+	@Override
+	public void moveSouth() {
+		// TODO Auto-generated method stub
+		
 	}
 }

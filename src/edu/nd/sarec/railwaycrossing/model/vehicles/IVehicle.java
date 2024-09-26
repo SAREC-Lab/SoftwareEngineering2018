@@ -7,7 +7,9 @@ public interface IVehicle {
 	public Node getImageView();
 	public double getVehicleX();
 	public double getVehicleY();
-	public void move();
+	public void moveWest();
+	public void moveEast();
+	public void moveSouth();
 	public boolean offScreen();
 	public void reset();
 }

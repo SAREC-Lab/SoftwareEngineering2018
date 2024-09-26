@@ -19,6 +19,7 @@ public class MapDisplay {
 	IDisplay roadDisplay, tracksDisplay;
 	Collection<Road> roads;
 	Collection<RailwayTracks> track;
+	Collection<RailwayTracks> track2;
 	Collection<CrossingGate> gates;
 	
 	
@@ -26,6 +27,9 @@ public class MapDisplay {
 		this.root = root;
 		this.roads= roads;
 		this.track = tracks;
+		this.track2 = tracks;
+		for(Road road: roads)
+			System.out.println(road);
 		this.gates = gates;
 		roadDisplay = new RoadDisplay(roads,root);
 		tracksDisplay = new TracksDisplay(tracks,root);
