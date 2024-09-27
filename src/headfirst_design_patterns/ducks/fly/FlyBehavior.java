@@ -7,5 +7,5 @@ package headfirst_design_patterns.ducks.fly;
  *
  */
 public interface FlyBehavior {
-	public void performFly(); 
+	void performFly();
 }
