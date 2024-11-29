@@ -21,6 +21,8 @@ public class CarFactory {
 	Direction direction;
 	Point location;
 	
+	CarFactory otherFactory;
+	
 	public CarFactory(){}
 	
 	public CarFactory(Direction direction, Point location, Collection<CrossingGate> gates){
@@ -33,9 +35,9 @@ public class CarFactory {
 	// Most code here is to create random speeds
 	public Car buildCar(){
 		if (previousCar == null || location.y < previousCar.getVehicleY()-100){
-			Car car = new Car(location.x,location.y);	
+			Car car = new Car(location.x,location.y,this);	
 			double speedVariable = (Math.random() * 10)/10;
-			car.setSpeed((2-speedVariable)*1.5); 
+			car.setSpeed((2-speedVariable)*0.99); 
 			
 			// All cars created by this factory must be aware of crossing gates in the road
 			for(CrossingGate gate: gates){
@@ -44,7 +46,7 @@ public class CarFactory {
 					car.setGateDownFlag(false);
 			}
 			
-			// Each car must observe the car infront of it so it doesn't collide with it.
+			// Each car must observe the car in front of it so it doesn't collide with it.
 			if (previousCar != null)
 				previousCar.addObserver(car);
 			previousCar = car;
@@ -71,5 +73,29 @@ public class CarFactory {
 		for (Car car: toDelete)
 			cars.remove(car);
 		return toDelete;
+	}
+	
+	public Car getPreviousCar(){
+		return previousCar;
+	}
+	
+	public void setPreviousCar(Car c){
+		previousCar = c;
+	}
+	
+	public ArrayList<Car> getCars(){
+		return cars;
+	}
+	
+	public void setOtherCarFactory(CarFactory cf){
+		otherFactory = cf;
+	}
+	
+	public CarFactory getOtherCarFactory(){
+		return otherFactory;
+	}
+	
+	public void addCarToList(Car c){
+		cars.add(c);
 	}
 }
