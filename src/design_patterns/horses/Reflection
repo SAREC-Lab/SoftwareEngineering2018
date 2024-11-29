@@ -1,0 +1,17 @@
+Elijah Hager
+9/9/2018
+
+                                        Horse Race
+                                        
+          I used a Race class sort of as a base/main class in my project. This included a 
+enrollHorse method which allowed me to enroll 5 horses in the race and choose their strategy. 
+This was done with a array of the Horse objects. Then in a startRace method, the respective runs 
+and displays were running until one of them was finished in which cased it outputted the winner. 
+So, in the Horse class, all the universal variables for the horse were initialized, things 
+like position, name, speed etc. these would later be altered in their own strategy classes. 
+All the strategy classes were created as extensions from the Horse class. This was done so 
+they could alter and use the variables associated with the horse such as speed. In each strategy 
+the horses speed is updated when it should be, and the horse’s position is incremented based off 
+the updated speed, this is done until the horse passes 10 miles. I tinkered with what the type 
+of the strategies for hours figuring out ways to make them able to alter the horse’s values but 
+still be changeable outside the constructor, and this was the best solution I could come up with.

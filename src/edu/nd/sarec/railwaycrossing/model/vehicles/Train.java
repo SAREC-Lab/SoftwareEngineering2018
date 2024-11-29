@@ -28,7 +28,7 @@ public class Train extends Observable implements IVehicle{
 		imgView.setX(currentX);
 		imgView.setY(currentY);
 	}
-	
+
 	public double getVehicleX(){
 		return currentX;
 	}
@@ -48,7 +48,7 @@ public class Train extends Observable implements IVehicle{
 		if (currentX < -200)
 			return true;
 		else
-			return false;				
+			return false;
 	}
 	
 	public void reset(){

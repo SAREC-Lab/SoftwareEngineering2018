@@ -1,0 +1,4 @@
+I have created the 25x25 map and placed chip in it. He can move and his sprite changes to the appropiate image according to the 
+direction he is moving. I also placed walls down but only at random right now, I am working on creating the maps so the walls 
+make structures. I also am working on making a Viewport (camera that zooms in and follows chip, but for debugging purposes for the
+whole map I am leaving the camera zoomed out for now. I also will make moveable blocks, enemies and doors.
